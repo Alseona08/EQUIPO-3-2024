@@ -46,6 +46,21 @@
             <artifactId>ojdbc10</artifactId>
             <version>19.20.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.objectdb</groupId>
+            <artifactId>objectdb</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,4 +68,14 @@
         <maven.compiler.target>20</maven.compiler.target>
         <exec.mainClass>com.mycompany.equipo3.Equipo3</exec.mainClass>
     </properties>
+    <repositories>
+           <repository>
+               <id>objectdb</id>
+               <name>ObjectDB Repository</name>
+               <url>https://m2.objectdb.com</url>
+           </repository>
+    </repositories>
+    
+        
+    
 </project>
