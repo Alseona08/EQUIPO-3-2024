@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,6 +26,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Resenas.findAll", query = "SELECT r FROM Resenas r"),
     @NamedQuery(name = "Resenas.findByResenaid", query = "SELECT r FROM Resenas r WHERE r.resenaid = :resenaid"),
+    @NamedQuery(name = "Resenas.findByContenido", query = "SELECT r FROM Resenas r WHERE r.contenido = :contenido"),
     @NamedQuery(name = "Resenas.findByCalificacion", query = "SELECT r FROM Resenas r WHERE r.calificacion = :calificacion")})
 public class Resenas implements Serializable {
 
@@ -36,7 +36,6 @@ public class Resenas implements Serializable {
     @Basic(optional = false)
     @Column(name = "RESENAID")
     private BigDecimal resenaid;
-    @Lob
     @Column(name = "CONTENIDO")
     private String contenido;
     @Column(name = "CALIFICACION")
