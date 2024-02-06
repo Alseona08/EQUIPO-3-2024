@@ -6,6 +6,7 @@ package com.mycompany.equipo3;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class Transacciones implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "TRANSACCIONID")
-    private BigDecimal transaccionid;
+    private int transaccionid;
     @Column(name = "ESTADO")
     private String estado;
     @JoinColumn(name = "LIBROID_DESTINO", referencedColumnName = "LIBROID")
@@ -46,16 +47,12 @@ public class Transacciones implements Serializable {
     public Transacciones() {
     }
 
-    public Transacciones(BigDecimal transaccionid) {
+    public Transacciones(int transaccionid) {
         this.transaccionid = transaccionid;
     }
 
-    public BigDecimal getTransaccionid() {
+    public int getTransaccionid() {
         return transaccionid;
-    }
-
-    public void setTransaccionid(BigDecimal transaccionid) {
-        this.transaccionid = transaccionid;
     }
 
     public String getEstado() {
@@ -84,23 +81,35 @@ public class Transacciones implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (transaccionid != null ? transaccionid.hashCode() : 0);
+        int hash = 3;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Transacciones)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Transacciones other = (Transacciones) object;
-        if ((this.transaccionid == null && other.transaccionid != null) || (this.transaccionid != null && !this.transaccionid.equals(other.transaccionid))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Transacciones other = (Transacciones) obj;
+        if (this.transaccionid != other.transaccionid) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        if (!Objects.equals(this.libroidDestino, other.libroidDestino)) {
+            return false;
+        }
+        return Objects.equals(this.libroidOrigen, other.libroidOrigen);
     }
+
+    
 
     @Override
     public String toString() {

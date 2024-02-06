@@ -7,6 +7,7 @@ package com.mycompany.equipo3;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ public class Resenas implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "RESENAID")
-    private BigDecimal resenaid;
+    private int resenaid;
     @Column(name = "CONTENIDO")
     private String contenido;
     @Column(name = "CALIFICACION")
@@ -50,17 +51,19 @@ public class Resenas implements Serializable {
     public Resenas() {
     }
 
-    public Resenas(BigDecimal resenaid) {
+    public Resenas(int resenaid) {
         this.resenaid = resenaid;
     }
 
-    public BigDecimal getResenaid() {
+    public int getResenaid() {
         return resenaid;
     }
 
-    public void setResenaid(BigDecimal resenaid) {
+    public void setResenaid(int resenaid) {
         this.resenaid = resenaid;
     }
+
+    
 
     public String getContenido() {
         return contenido;
@@ -96,23 +99,38 @@ public class Resenas implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (resenaid != null ? resenaid.hashCode() : 0);
+        int hash = 7;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Resenas)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Resenas other = (Resenas) object;
-        if ((this.resenaid == null && other.resenaid != null) || (this.resenaid != null && !this.resenaid.equals(other.resenaid))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Resenas other = (Resenas) obj;
+        if (this.resenaid != other.resenaid) {
+            return false;
+        }
+        if (!Objects.equals(this.contenido, other.contenido)) {
+            return false;
+        }
+        if (!Objects.equals(this.calificacion, other.calificacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.libroid, other.libroid)) {
+            return false;
+        }
+        return Objects.equals(this.usuarioid, other.usuarioid);
     }
+
+    
 
     @Override
     public String toString() {

@@ -7,6 +7,7 @@ package com.mycompany.equipo3;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class Libros implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "LIBROID")
-    private BigDecimal libroid;
+    private int libroid;
     @Column(name = "TITULO")
     private String titulo;
     @Column(name = "AUTOR")
@@ -63,15 +64,25 @@ public class Libros implements Serializable {
     public Libros() {
     }
 
-    public Libros(BigDecimal libroid) {
+    public Libros(int libroid, String titulo, String autor, String descripcion, String estado, Categorias categoriaid, Usuarios usuarioid) {
+        this.libroid = libroid;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.categoriaid = categoriaid;
+        this.usuarioid = usuarioid;
+    }
+
+    public Libros(int libroid) {
         this.libroid = libroid;
     }
 
-    public BigDecimal getLibroid() {
+    public int getLibroid() {
         return libroid;
     }
 
-    public void setLibroid(BigDecimal libroid) {
+    public void setLibroid(int libroid) {
         this.libroid = libroid;
     }
 
@@ -149,23 +160,53 @@ public class Libros implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (libroid != null ? libroid.hashCode() : 0);
+        int hash = 7;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Libros)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Libros other = (Libros) object;
-        if ((this.libroid == null && other.libroid != null) || (this.libroid != null && !this.libroid.equals(other.libroid))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Libros other = (Libros) obj;
+        if (this.libroid != other.libroid) {
+            return false;
+        }
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.autor, other.autor)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        if (!Objects.equals(this.resenasCollection, other.resenasCollection)) {
+            return false;
+        }
+        if (!Objects.equals(this.categoriaid, other.categoriaid)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuarioid, other.usuarioid)) {
+            return false;
+        }
+        if (!Objects.equals(this.transaccionesCollection, other.transaccionesCollection)) {
+            return false;
+        }
+        return Objects.equals(this.transaccionesCollection1, other.transaccionesCollection1);
     }
+
+    
 
     @Override
     public String toString() {
