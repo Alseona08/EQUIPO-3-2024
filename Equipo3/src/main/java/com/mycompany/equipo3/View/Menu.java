@@ -4,6 +4,17 @@
  */
 package com.mycompany.equipo3.View;
 
+import java.awt.Component;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+
 /**
  *
  * @author migue
@@ -14,6 +25,10 @@ public class Menu extends javax.swing.JPanel {
     public Menu(CamVis cv1) {
         this.cv1 = cv1;
         initComponents();
+        
+        
+
+        
     }
     
     /**
@@ -29,11 +44,11 @@ public class Menu extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 626, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 424, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -41,3 +56,5 @@ public class Menu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
+
+
