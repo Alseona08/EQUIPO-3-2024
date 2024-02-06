@@ -4,6 +4,7 @@
  */
 package com.mycompany.equipo3;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
@@ -47,6 +48,39 @@ public class Gonzalo {
         catch(NoResultException e){
             System.out.println("No hay datos");
         } 
+    }
+    
+    private static void consultaMasivaReseñaPorTituloYCalificacion(String titulo, BigInteger calificacion){
+        Resenas resena;
+        TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid.titulo =: TITULOP and r.calificacion =: CALIFICACIONP ", Resenas.class);
+        query.setParameter("TITULOP", titulo);
+        query.setParameter("CALIFICACIONP", calificacion);
+        
+        try{
+            Collection<Resenas> coleccion=query.getResultList();
+            Iterator<Resenas> it=coleccion.iterator();
+            
+            System.out.print("ID reseña \t");
+            System.out.print("Contenido \t");
+            System.out.print("Calificacion \t");
+            System.out.print("ID libro \t");
+            System.out.print("ID reseña \t");
+            System.out.println("ID usuario");
+                    
+            while (it.hasNext()){
+                resena=it.next();
+                System.out.print(resena.getResenaid()+"\t");
+                System.out.print(resena.getContenido()+"\t");
+                System.out.print(resena.getCalificacion()+"\t");
+                System.out.print(resena.getLibroid()+"\t");
+                System.out.print(resena.getResenaid()+"\t");
+                System.out.println(resena.getUsuarioid());
+            }
+        }
+        catch(NoResultException e){
+            System.out.println("No hay datos");
+        } 
+        
     }
     public static void inicializaFactory(){
         emf = Persistence.createEntityManagerFactory ("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");
