@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.equipo3;
+package com.mycompany.equipo3.View;
 
 /**
  *
@@ -10,10 +10,9 @@ package com.mycompany.equipo3;
  */
 public class RegistroUsuario extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RegistroUsuario
-     */
-    public RegistroUsuario() {
+    CamVis cv1;
+    public RegistroUsuario(CamVis cv1) {
+        this.cv1 = cv1;
         initComponents();
     }
 
