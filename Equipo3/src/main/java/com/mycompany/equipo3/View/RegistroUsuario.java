@@ -40,12 +40,6 @@ public class RegistroUsuario extends javax.swing.JPanel {
 
         jLUsuario.setText("Usuario");
 
-        TFUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFUsuarioActionPerformed(evt);
-            }
-        });
-
         jLMail.setText("Correo Electrónico");
 
         ButtonRegistro.setText("Registrarse");
@@ -122,16 +116,12 @@ public class RegistroUsuario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TFUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFUsuarioActionPerformed
-
-    }//GEN-LAST:event_TFUsuarioActionPerformed
-
     private void ButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegistroActionPerformed
-        
+        //Aqui crear llamar al metodo que añada Usuarios con los parametros que cojamos te la interfaz
     }//GEN-LAST:event_ButtonRegistroActionPerformed
 
     private void ButtonIrAInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIrAInicioSesionActionPerformed
-        
+        cv1.cambiarVista(new InicioUsuario(cv1));
     }//GEN-LAST:event_ButtonIrAInicioSesionActionPerformed
 
 

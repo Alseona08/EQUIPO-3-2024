@@ -92,6 +92,7 @@ public class InicioUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonInicioSesionToAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonInicioSesionToAlbumActionPerformed
+        //Crear metodo que compruebe si dicho usuario esta, si esta deja continuar y si no muestre un mensaje de usuario no registrado
         cv1.cambiarVista(new Menu(cv1));
     }//GEN-LAST:event_ButtonInicioSesionToAlbumActionPerformed
 
