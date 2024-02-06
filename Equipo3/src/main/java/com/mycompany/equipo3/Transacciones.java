@@ -42,6 +42,9 @@ public class Transacciones implements Serializable {
     @JoinColumn(name = "LIBROID_ORIGEN", referencedColumnName = "LIBROID")
     @ManyToOne
     private Libros libroidOrigen;
+    @JoinColumn(name = "USUARIOID", referencedColumnName = "USUARIOID")
+    @ManyToOne
+    private Usuarios usuarioid;
 
     public Transacciones() {
     }

@@ -46,6 +46,8 @@ public class Usuarios implements Serializable {
     private Collection<Resenas> resenasCollection;
     @OneToMany(mappedBy = "usuarioid")
     private Collection<Libros> librosCollection;
+    @OneToMany(mappedBy = "usuarioid")
+    private Collection<Transacciones> transaccionesCollection;
 
     public Usuarios() {
     }
