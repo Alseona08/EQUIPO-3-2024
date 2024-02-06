@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -30,6 +29,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Libros.findByLibroid", query = "SELECT l FROM Libros l WHERE l.libroid = :libroid"),
     @NamedQuery(name = "Libros.findByTitulo", query = "SELECT l FROM Libros l WHERE l.titulo = :titulo"),
     @NamedQuery(name = "Libros.findByAutor", query = "SELECT l FROM Libros l WHERE l.autor = :autor"),
+    @NamedQuery(name = "Libros.findByDescripcion", query = "SELECT l FROM Libros l WHERE l.descripcion = :descripcion"),
     @NamedQuery(name = "Libros.findByEstado", query = "SELECT l FROM Libros l WHERE l.estado = :estado")})
 public class Libros implements Serializable {
 
@@ -43,7 +43,6 @@ public class Libros implements Serializable {
     private String titulo;
     @Column(name = "AUTOR")
     private String autor;
-    @Lob
     @Column(name = "DESCRIPCION")
     private String descripcion;
     @Column(name = "ESTADO")
