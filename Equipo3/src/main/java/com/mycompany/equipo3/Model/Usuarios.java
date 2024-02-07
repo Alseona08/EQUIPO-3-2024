@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.equipo3;
+package com.mycompany.equipo3.Model;
 
+import com.mycompany.equipo3.Model.Transacciones;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -47,6 +48,8 @@ public class Usuarios implements Serializable {
     private Collection<Resenas> resenasCollection;
     @OneToMany(mappedBy = "usuarioid")
     private Collection<Libros> librosCollection;
+    @OneToMany(mappedBy = "usuarioid")
+    private Collection<Transacciones> transaccionesCollection;
 
     public Usuarios() {
     }

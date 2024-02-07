@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.equipo3;
+package com.mycompany.equipo3.Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -43,6 +43,9 @@ public class Transacciones implements Serializable {
     @JoinColumn(name = "LIBROID_ORIGEN", referencedColumnName = "LIBROID")
     @ManyToOne
     private Libros libroidOrigen;
+    @JoinColumn(name = "USUARIOID", referencedColumnName = "USUARIOID")
+    @ManyToOne
+    private Usuarios usuarioid;
 
     public Transacciones() {
     }
