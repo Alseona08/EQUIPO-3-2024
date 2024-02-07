@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -52,7 +53,7 @@ public class Gonzalo {
         } 
     }
     
-    private static void consultaMasivaReseñaPorTituloYCalificacion(String titulo, BigInteger calificacion){
+    public static void consultaMasivaReseñaPorTituloYCalificacion(String titulo, int calificacion,JTextArea txtArea){
         Resenas resena;
         TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid.titulo =: TITULOP and r.calificacion =: CALIFICACIONP ", Resenas.class);
         query.setParameter("TITULOP", titulo);
@@ -62,25 +63,28 @@ public class Gonzalo {
             Collection<Resenas> coleccion=query.getResultList();
             Iterator<Resenas> it=coleccion.iterator();
             
-            System.out.print("ID reseña \t");
-            System.out.print("Contenido \t");
-            System.out.print("Calificacion \t");
-            System.out.print("ID libro \t");
-            System.out.print("ID reseña \t");
-            System.out.println("ID usuario");
-                    
-            while (it.hasNext()){
-                resena=it.next();
-                System.out.print(resena.getResenaid()+"\t");
-                System.out.print(resena.getContenido()+"\t");
-                System.out.print(resena.getCalificacion()+"\t");
-                System.out.print(resena.getLibroid()+"\t");
-                System.out.print(resena.getResenaid()+"\t");
-                System.out.println(resena.getUsuarioid());
+            // Limpia el contenido del JTextArea
+            txtArea.setText("");
+
+            // Concatena los resultados en el JTextArea
+            StringBuilder resultado = new StringBuilder();
+            resultado.append("ID reseña \tContenido \tCalificacion \tID libro \tID reseña \tID usuario\n");
+            
+            while(it.hasNext()){
+                resena = it.next();
+                resultado.append(resena.getResenaid()).append("\t");
+                resultado.append(resena.getContenido()).append("\t");
+                resultado.append(resena.getCalificacion()).append("\t");
+                resultado.append(resena.getLibroid()).append("\t");
+                resultado.append(resena.getResenaid()).append("\t");
+                resultado.append(resena.getUsuarioid()).append("\t");
             }
+            
+            txtArea.append(resultado.toString());
+           
         }
         catch(NoResultException e){
-            System.out.println("No hay datos");
+            txtArea.setText("NO HAY DATOS QUE CORRESPONDAN");
         } 
         
     }

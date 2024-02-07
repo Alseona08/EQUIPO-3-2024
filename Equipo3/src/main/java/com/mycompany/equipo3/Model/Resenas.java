@@ -8,6 +8,7 @@ import com.mycompany.equipo3.Model.Usuarios;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,11 +37,11 @@ public class Resenas implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "RESENAID")
-    private BigDecimal resenaid;
+    private int resenaid;
     @Column(name = "CONTENIDO")
     private String contenido;
     @Column(name = "CALIFICACION")
-    private BigInteger calificacion;
+    private int calificacion;
     @JoinColumn(name = "LIBROID", referencedColumnName = "LIBROID")
     @ManyToOne
     private Libros libroid;
@@ -51,15 +52,15 @@ public class Resenas implements Serializable {
     public Resenas() {
     }
 
-    public Resenas(BigDecimal resenaid) {
+    public Resenas(int resenaid) {
         this.resenaid = resenaid;
     }
 
-    public BigDecimal getResenaid() {
+    public int getResenaid() {
         return resenaid;
     }
 
-    public void setResenaid(BigDecimal resenaid) {
+    public void setResenaid(int resenaid) {
         this.resenaid = resenaid;
     }
 
@@ -71,11 +72,11 @@ public class Resenas implements Serializable {
         this.contenido = contenido;
     }
 
-    public BigInteger getCalificacion() {
+    public int getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(BigInteger calificacion) {
+    public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -97,23 +98,38 @@ public class Resenas implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (resenaid != null ? resenaid.hashCode() : 0);
+        int hash = 5;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Resenas)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Resenas other = (Resenas) object;
-        if ((this.resenaid == null && other.resenaid != null) || (this.resenaid != null && !this.resenaid.equals(other.resenaid))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Resenas other = (Resenas) obj;
+        if (this.resenaid != other.resenaid) {
+            return false;
+        }
+        if (this.calificacion != other.calificacion) {
+            return false;
+        }
+        if (!Objects.equals(this.contenido, other.contenido)) {
+            return false;
+        }
+        if (!Objects.equals(this.libroid, other.libroid)) {
+            return false;
+        }
+        return Objects.equals(this.usuarioid, other.usuarioid);
     }
+
+    
 
     @Override
     public String toString() {
