@@ -7,6 +7,7 @@ package com.mycompany.equipo3;
 import com.mycompany.equipo3.Model.Libros;
 import com.mycompany.equipo3.Model.Categorias;
 import com.mycompany.equipo3.Model.Transacciones;
+import com.mycompany.equipo3.Model.Usuarios;
 import java.sql.PreparedStatement;
 import java.util.Collection;
 import java.util.Iterator;
@@ -101,6 +102,31 @@ public class Silvia {
 
         // Confirmar la transacción
         em.getTransaction().commit();
+    }
+    
+    private static void consultaTransaccionesUsuario(int idUsuario){
+        em.getTransaction().begin();
+        
+        Usuarios usuario=em.find(Usuarios.class, idUsuario, LockModeType.PESSIMISTIC_READ);
+        
+        if(usuario!=null){
+            
+            Transacciones t;
+            Collection<Transacciones> coleccion = usuario.getTransaccionesCollection();
+            Iterator<Transacciones> it = coleccion.iterator();
+            
+            while(it.hasNext()){
+                t=it.next();
+                System.out.println("Libro ofrecido:");
+                System.out.println(t.getLibroidOrigen());
+                System.out.println("Libro pedido:");
+                System.out.println(t.getLibroidDestino());
+                System.out.println("Estado");
+                System.out.println(t.getEstado());
+            }
+        }else{
+            System.out.println("No existe el usuario");
+        }
     }
 
     public static void inicializaFactory(){

@@ -105,6 +105,14 @@ public class Usuarios implements Serializable {
         this.librosCollection = librosCollection;
     }
 
+    public Collection<Transacciones> getTransaccionesCollection() {
+        return transaccionesCollection;
+    }
+
+    public void setTransaccionesCollection(Collection<Transacciones> transaccionesCollection) {
+        this.transaccionesCollection = transaccionesCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
