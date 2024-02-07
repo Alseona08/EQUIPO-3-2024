@@ -33,7 +33,7 @@ public class Equipo3 {
         TypedQuery<Usuarios> query = em.createQuery("Select u from Usuarios u where u.idusuario=:IDUSUARIO",Usuarios.class);
         query.setParameter("IDUSUARIO",idUsuario);
         Usuarios usuario = query.getSingleResult();
-        query = em.createQuery("")
+        //query = em.createQuery("")
         em.getTransaction().begin();
         em.remove(usuario);
         em.getTransaction().commit();

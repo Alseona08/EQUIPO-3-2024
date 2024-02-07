@@ -10,8 +10,10 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Objects;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,7 +36,7 @@ public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue
     @Basic(optional = false)
     @Column(name = "USUARIOID")
     private int usuarioid;
@@ -46,13 +48,30 @@ public class Usuarios implements Serializable {
     private String contrasena;
     @OneToMany(mappedBy = "usuarioid")
     private Collection<Resenas> resenasCollection;
-    @OneToMany(mappedBy = "usuarioid")
+    @OneToMany(mappedBy = "usuarioid",orphanRemoval=true)
     private Collection<Libros> librosCollection;
     @OneToMany(mappedBy = "usuarioid")
     private Collection<Transacciones> transaccionesCollection;
 
     public Usuarios() {
     }
+    public Usuarios(String nombre, String correoelectronico, String contrasena) {
+        
+        this.nombre = nombre;
+        this.correoelectronico = correoelectronico;
+        this.contrasena = contrasena;
+    }
+    public Usuarios(int usuarioid, String nombre, String correoelectronico, String contrasena) {
+        this.usuarioid = usuarioid;
+        this.nombre = nombre;
+        this.correoelectronico = correoelectronico;
+        this.contrasena = contrasena;
+        this.resenasCollection = null;
+        this.librosCollection = null;
+        this.transaccionesCollection = null;
+    }
+    
+    
 
     public Usuarios(int usuarioid) {
         this.usuarioid = usuarioid;

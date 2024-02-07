@@ -9,8 +9,10 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Objects;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -31,13 +33,13 @@ public class Categorias implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue
     @Basic(optional = false)
     @Column(name = "CATEGORIAID")
     private int categoriaid;
     @Column(name = "NOMBRE")
     private String nombre;
-    @OneToMany(mappedBy = "categoriaid")
+    @OneToMany(mappedBy = "categoriaid",orphanRemoval=true)
     private Collection<Libros> librosCollection;
 
     public Categorias() {
@@ -46,6 +48,18 @@ public class Categorias implements Serializable {
     public Categorias(int categoriaid) {
         this.categoriaid = categoriaid;
     }
+    
+    public Categorias(String nombre) {
+        this.nombre = nombre;
+        this.librosCollection = null;
+    }
+    
+    public Categorias(int categoriaid, String nombre) {
+        this.categoriaid = categoriaid;
+        this.nombre = nombre;
+        this.librosCollection = null;
+    }
+    
 
     public int getCategoriaid() {
         return categoriaid;

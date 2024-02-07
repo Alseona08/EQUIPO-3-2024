@@ -11,7 +11,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:ORCL18"/>
       <property name="javax.persistence.jdbc.user" value="dam2"/>
       <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-      <property name="javax.persistence.jdbc.password" value="dam2"/>
+      <property name="javax.persistence.jdbc.password" value="1234"/>
     </properties>
   </persistence-unit>
 </persistence>
