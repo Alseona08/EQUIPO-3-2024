@@ -98,8 +98,16 @@ public class InicioUsuario extends javax.swing.JPanel {
         String nombre = TFUsuario.getText();
         char[] password = PFContraseña.getPassword();
         String passw = new String(password);
-        Miguel.checkUsuario(nombre, passw);
-        cv1.cambiarVista(new Menu(cv1));
+        if(!nombre.isBlank() && !nombre.isEmpty() &&
+           !passw.isBlank() && !passw.isEmpty()){
+            if(Miguel.checkUsuarioLogin(nombre, passw)){
+                cv1.cambiarVista(new Menu(cv1));
+            }else{
+                TFMensaje.setText("Usuario no encontrado, registrese");
+            }
+        }else{
+            TFMensaje.setText("Usuario o contraseña vacios");
+        }
     }//GEN-LAST:event_ButtonInicioSesionToAlbumActionPerformed
 
     private void ButtonIraRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIraRegistroActionPerformed

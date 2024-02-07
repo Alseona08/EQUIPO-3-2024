@@ -26,17 +26,17 @@ public class Alex {
     public static void main(String[] args) throws SQLException {
         inicializaFactory();
         System.out.println("Hola mundo");
-        Usuarios usuario = new Usuarios(1,"Miguel","hola","wasd");
+        Usuarios usuario = new Usuarios(2,"Alejandro","adios","wasd");
         insertarUsuario(usuario);
-        insertarLibro(1,"Don Quijote","Miguel De Cervantes","Obra maestra","Disponible","Aventura",usuario);
+        insertarLibro(2,"Don Quijote","Miguel De Cervantes","Obra maestra","Disponible","Fantasia",usuario);
         em.close();
         emf.close();
     }
     
     
-    private static void insertarLibro(int libroid, String titulo, String autor, String descripcion, String estado, String categorianombre, Usuarios usuarioid) throws SQLException{
+    public static void insertarLibro(int libroid, String titulo, String autor, String descripcion, String estado, String categorianombre, Usuarios usuarioid) throws SQLException{
         em.getTransaction().begin();
-        Categorias categoria = new Categorias(2,categorianombre);
+        Categorias categoria = new Categorias(3,categorianombre);
         em.persist(categoria);
         Libros lib = new Libros(libroid,titulo,autor,descripcion,estado,categoria,usuarioid);
         em.persist(lib);
@@ -44,7 +44,9 @@ public class Alex {
         em.getTransaction().commit();
     }
     
-    private static void insertarUsuario(Usuarios usuario){
+    public static void insertarUsuario(Usuarios usuario){
+        emf = Persistence.createEntityManagerFactory ("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(usuario);
         em.getTransaction().commit();
