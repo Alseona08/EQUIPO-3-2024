@@ -1,6 +1,8 @@
 
 package com.mycompany.equipo3.View;
 
+import com.mycompany.equipo3.Miguel;
+
 public class InicioUsuario extends javax.swing.JPanel {
 
     CamVis cv1;
@@ -53,10 +55,10 @@ public class InicioUsuario extends javax.swing.JPanel {
                 .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(108, 108, 108)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ButtonInicioSesionToAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(ButtonInicioSesionToAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -93,6 +95,10 @@ public class InicioUsuario extends javax.swing.JPanel {
 
     private void ButtonInicioSesionToAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonInicioSesionToAlbumActionPerformed
         //Crear metodo que compruebe si dicho usuario esta, si esta deja continuar y si no muestre un mensaje de usuario no registrado
+        String nombre = TFUsuario.getText();
+        char[] password = PFContraseña.getPassword();
+        String passw = new String(password);
+        Miguel.checkUsuario(nombre, passw);
         cv1.cambiarVista(new Menu(cv1));
     }//GEN-LAST:event_ButtonInicioSesionToAlbumActionPerformed
 
