@@ -4,6 +4,8 @@
  */
 package com.mycompany.equipo3;
 
+import com.mycompany.equipo3.Model.Resenas;
+import com.mycompany.equipo3.Model.Transacciones;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Iterator;

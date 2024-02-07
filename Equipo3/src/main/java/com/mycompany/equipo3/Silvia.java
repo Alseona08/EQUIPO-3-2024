@@ -4,6 +4,9 @@
  */
 package com.mycompany.equipo3;
 
+import com.mycompany.equipo3.Model.Libros;
+import com.mycompany.equipo3.Model.Categorias;
+import com.mycompany.equipo3.Model.Transacciones;
 import java.sql.PreparedStatement;
 import java.util.Collection;
 import java.util.Iterator;
