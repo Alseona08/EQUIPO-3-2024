@@ -43,8 +43,7 @@ public class Miguel {
         em.getTransaction().commit();
     }
     public static boolean checkUsuarioLogin(String nombre, String contraseña){
-        emf = Persistence.createEntityManagerFactory ("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");
-        em = emf.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
         boolean exists = false;
         TypedQuery<Long> query = em.createQuery("Select count(u) from Usuarios u where u.contrasena=:CONTRASENA AND u.nombre=:NOMBRE",Long.class);
         query.setParameter("CONTRASENA",contraseña);
@@ -56,8 +55,7 @@ public class Miguel {
         return exists;
     }
     public static boolean checkUsuarioRegistro(String mail){
-        emf = Persistence.createEntityManagerFactory ("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");
-        em = emf.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
         boolean exists = true;
         TypedQuery<Long> query = em.createQuery("Select count(u) from Usuarios u where u.correoelectronico=:MAIL",Long.class);
         query.setParameter("MAIL", mail);
@@ -67,12 +65,23 @@ public class Miguel {
         }
         return exists; 
     }
+    public static Usuarios getUsuarioLoged(String nombre, String contraseña){
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Usuarios> query = em.createQuery("Select u from Usuarios u where u.contrasena=:CONTRASENA AND u.nombre=:NOMBRE",Usuarios.class);
+        query.setParameter("CONTRASENA",contraseña);
+        query.setParameter("NOMBRE", nombre);
+        Usuarios usuario = query.getSingleResult();
+        return usuario; 
+    }
     public static int getLastIdUsuario(){
-        emf = Persistence.createEntityManagerFactory ("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");
-        em = emf.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
         int id = 0;
+        TypedQuery<Long> query1 = em.createQuery("Select count(u) from Usuarios u",Long.class);
+        Long count = query1.getSingleResult();
         TypedQuery<Integer> query = em.createQuery("Select max(u.usuarioid) from Usuarios u",Integer.class);
-        id = query.getSingleResult();
+        if(count != 0){
+            id = query.getSingleResult();
+        }
         return id;
     }
 

@@ -16,13 +16,44 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="626" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="UpdateButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="InsercionButton" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="493" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="424" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Component id="InsercionButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="UpdateButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="309" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="InsercionButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insercion"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InsercionButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="UpdateButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateButtonActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
 </Form>

@@ -2,6 +2,7 @@
 package com.mycompany.equipo3.View;
 
 import com.mycompany.equipo3.Miguel;
+import static com.mycompany.equipo3.Miguel.getUsuarioLoged;
 
 public class InicioUsuario extends javax.swing.JPanel {
 
@@ -101,7 +102,8 @@ public class InicioUsuario extends javax.swing.JPanel {
         if(!nombre.isBlank() && !nombre.isEmpty() &&
            !passw.isBlank() && !passw.isEmpty()){
             if(Miguel.checkUsuarioLogin(nombre, passw)){
-                cv1.cambiarVista(new Menu(cv1));
+                
+                cv1.cambiarVista(new Menu(cv1,getUsuarioLoged(nombre, passw)));
             }else{
                 TFMensaje.setText("Usuario no encontrado, registrese");
             }

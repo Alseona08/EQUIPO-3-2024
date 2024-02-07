@@ -5,7 +5,6 @@
 package com.mycompany.equipo3.Model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -54,6 +53,14 @@ public class Transacciones implements Serializable {
         this.transaccionid = transaccionid;
     }
 
+    public Transacciones(int transaccionid, String estado, Libros libroidDestino, Libros libroidOrigen, Usuarios usuarioid) {
+        this.transaccionid = transaccionid;
+        this.estado = estado;
+        this.libroidDestino = libroidDestino;
+        this.libroidOrigen = libroidOrigen;
+        this.usuarioid = usuarioid;
+    }
+    
     public int getTransaccionid() {
         return transaccionid;
     }

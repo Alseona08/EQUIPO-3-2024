@@ -4,6 +4,7 @@
  */
 package com.mycompany.equipo3.View;
 
+import com.mycompany.equipo3.Model.Usuarios;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -22,8 +23,10 @@ import javax.swing.table.TableCellRenderer;
 public class Menu extends javax.swing.JPanel {
 
     CamVis cv1;
-    public Menu(CamVis cv1) {
+    Usuarios usuario;
+    public Menu(CamVis cv1, Usuarios usuario) {
         this.cv1 = cv1;
+        this.usuario = usuario;
         initComponents();
         
         
@@ -40,20 +43,57 @@ public class Menu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        InsercionButton = new javax.swing.JButton();
+        UpdateButton = new javax.swing.JButton();
+
+        InsercionButton.setText("Insercion");
+        InsercionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsercionButtonActionPerformed(evt);
+            }
+        });
+
+        UpdateButton.setText("Modificar");
+        UpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UpdateButton)
+                    .addComponent(InsercionButton))
+                .addContainerGap(493, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(InsercionButton)
+                .addGap(18, 18, 18)
+                .addComponent(UpdateButton)
+                .addContainerGap(309, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
+        cv1.cambiarVista(new InserModiTrans(cv1,"Modificar",usuario));
+    }//GEN-LAST:event_UpdateButtonActionPerformed
+
+    private void InsercionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsercionButtonActionPerformed
+        cv1.cambiarVista(new InserModiTrans(cv1,"Insertar",usuario));
+    }//GEN-LAST:event_InsercionButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton InsercionButton;
+    private javax.swing.JButton UpdateButton;
     // End of variables declaration//GEN-END:variables
 }
 
