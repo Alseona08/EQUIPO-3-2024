@@ -86,6 +86,12 @@ public class Miguel {
         }
         return exists;
     }
+    public static List<String> selectTitulos(){
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<String> query = em.createQuery("Select l.titulo from Libros l",String.class);
+        List<String> lista = query.getResultList();
+        return lista;
+    }
 
     
 }

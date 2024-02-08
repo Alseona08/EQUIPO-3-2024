@@ -4,6 +4,7 @@
  */
 package com.mycompany.equipo3;
 
+import com.mycompany.equipo3.Model.Libros;
 import com.mycompany.equipo3.Model.Resenas;
 import com.mycompany.equipo3.Model.Transacciones;
 import java.math.BigInteger;
@@ -57,10 +58,12 @@ public class Gonzalo {
     
     public static void consultaMasivaReseñaPorTituloYCalificacion(String titulo, int calificacion,JTextArea txtArea){
         EntityManager em = JPAUtil.getEntityManager();
-        Resenas resena;
-        TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid.titulo =: TITULOP AND r.calificacion =: CALIFICACIONP", Resenas.class);
-        
-        query.setParameter("TITULOP", titulo);
+        Resenas resena = null;
+        TypedQuery<Libros> query1 = em.createQuery("SELECT c FROM Libros c WHERE c.titulo=:titulo",Libros.class);
+        query1.setParameter("titulo", titulo);
+        Libros lib = query1.getSingleResult();
+        TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid=:LIBROP AND r.calificacion=:CALIFICACIONP", Resenas.class);
+        query.setParameter("LIBROP", lib);
         query.setParameter("CALIFICACIONP", calificacion);
         
         try{
@@ -72,16 +75,15 @@ public class Gonzalo {
 
             // Concatena los resultados en el JTextArea
             StringBuilder resultado = new StringBuilder();
-            resultado.append("ID reseña \tContenido \tCalificacion \tID libro \tID reseña \tID usuario\n");
+            resultado.append("ID reseña \tContenido \tCalificacion \tTitulo \tUsuario\n");
             
             while(it.hasNext()){
                 resena = it.next();
                 resultado.append(resena.getResenaid()).append("\t");
                 resultado.append(resena.getContenido()).append("\t");
                 resultado.append(resena.getCalificacion()).append("\t");
-                resultado.append(resena.getLibroid()).append("\t");
-                resultado.append(resena.getResenaid()).append("\t");
-                resultado.append(resena.getUsuarioid()).append("\t");
+                resultado.append(resena.getLibroid().getTitulo()).append("\t");
+                resultado.append(resena.getUsuarioid().getNombre()).append("\t");
             }
             
             txtArea.append(resultado.toString());

@@ -5,7 +5,8 @@
 package com.mycompany.equipo3.View;
 
 import com.mycompany.equipo3.Gonzalo;
-import java.math.BigInteger;
+import static com.mycompany.equipo3.Miguel.selectTitulos;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,13 @@ public class ConsultarReseñas extends javax.swing.JPanel {
      */
     public ConsultarReseñas() {
         initComponents();
+        List<String> lista = selectTitulos();
+        for(String item : lista){
+            jComboBox.addItem(item);
+        }
+        for(int i = 1;i<=10;i++){
+            jComboBox1.addItem(String.valueOf(i));
+        }
     }
 
     /**
@@ -35,11 +43,11 @@ public class ConsultarReseñas extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         tituloLabel = new javax.swing.JLabel();
         calificacionLabel = new javax.swing.JLabel();
-        tituloTxtField = new javax.swing.JTextField();
-        calificacionTxtField = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         mostrarScrollPanel = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
+        jComboBox = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -49,18 +57,6 @@ public class ConsultarReseñas extends javax.swing.JPanel {
         tituloLabel.setText("Título:");
 
         calificacionLabel.setText("Calificación:");
-
-        tituloTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tituloTxtFieldActionPerformed(evt);
-            }
-        });
-
-        calificacionTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calificacionTxtFieldActionPerformed(evt);
-            }
-        });
 
         btnConsultar.setText("CONSULTAR");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +88,8 @@ public class ConsultarReseñas extends javax.swing.JPanel {
                             .addComponent(tituloLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calificacionTxtField)
-                            .addComponent(tituloTxtField))
+                            .addComponent(jComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(btnConsultar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -108,49 +104,41 @@ public class ConsultarReseñas extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tituloLabel)
-                            .addComponent(tituloTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(calificacionTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(calificacionLabel)))
+                            .addComponent(calificacionLabel)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mostrarScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(mostrarScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tituloTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tituloTxtFieldActionPerformed
-        
-    }//GEN-LAST:event_tituloTxtFieldActionPerformed
-
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
    
-        if(tituloTxtField.getText().isEmpty() || calificacionTxtField.getText().isEmpty()){
+        if(((String)jComboBox.getSelectedItem()).isEmpty() || ((String)jComboBox1.getSelectedItem()).isEmpty()){
             JOptionPane.showMessageDialog(this, "Tanto el título como la calificación deben estar rellenadas.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             System.out.println("Estan vacios perra");
         }else{
-             Gonzalo.consultaMasivaReseñaPorTituloYCalificacion(tituloTxtField.getText(),Integer.parseInt(calificacionTxtField.getText()), txtArea);
+             Gonzalo.consultaMasivaReseñaPorTituloYCalificacion((String)jComboBox.getSelectedItem(),Integer.parseInt((String)jComboBox1.getSelectedItem()), txtArea);
         }
         
     }//GEN-LAST:event_btnConsultarActionPerformed
-
-    private void calificacionTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionTxtFieldActionPerformed
-        
-    }//GEN-LAST:event_calificacionTxtFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
     private javax.swing.JLabel calificacionLabel;
-    private javax.swing.JTextField calificacionTxtField;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<String> jComboBox;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane mostrarScrollPanel;
     private javax.swing.JLabel tituloLabel;
-    private javax.swing.JTextField tituloTxtField;
     private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }
