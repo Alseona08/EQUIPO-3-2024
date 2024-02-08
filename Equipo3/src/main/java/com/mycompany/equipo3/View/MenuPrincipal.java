@@ -230,6 +230,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
                 añadirIntercambios();
                 break;
             case "Modificar Intercambios":
+                modificarIntercambios();
                 break;
             case "Borrar Intercambios":
                 borrarIntercambios();
