@@ -4,6 +4,11 @@
  */
 package com.mycompany.equipo3.View;
 
+import static com.mycompany.equipo3.Alex.insertarUsuario;
+import static com.mycompany.equipo3.Miguel.checkUsuarioRegistro;
+import static com.mycompany.equipo3.Miguel.getLastIdUsuario;
+import com.mycompany.equipo3.Model.Usuarios;
+
 /**
  *
  * @author migue
@@ -29,12 +34,12 @@ public class RegistroUsuario extends javax.swing.JPanel {
         jLUsuario = new javax.swing.JLabel();
         TFUsuario = new javax.swing.JTextField();
         jLMail = new javax.swing.JLabel();
-        PFMail = new javax.swing.JPasswordField();
         ButtonRegistro = new javax.swing.JButton();
         ButtonIrAInicioSesion = new javax.swing.JButton();
         TFMensaje = new javax.swing.JTextField();
         jLContraseña = new javax.swing.JLabel();
         PFContraseña = new javax.swing.JPasswordField();
+        TFMail = new javax.swing.JTextField();
 
         jLabel1.setText("PON TUS DATOS PARA REGISTRARTE");
 
@@ -68,7 +73,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 184, Short.MAX_VALUE)
+                                .addGap(0, 183, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ButtonIrAInicioSesion, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -80,8 +85,8 @@ public class RegistroUsuario extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(PFContraseña)
-                                    .addComponent(PFMail)
-                                    .addComponent(TFUsuario)))))
+                                    .addComponent(TFUsuario)
+                                    .addComponent(TFMail, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,23 +106,41 @@ public class RegistroUsuario extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLMail)
-                    .addComponent(PFMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(TFMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLContraseña)
                     .addComponent(PFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(131, 131, 131)
+                .addGap(156, 156, 156)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonRegistro)
                     .addComponent(ButtonIrAInicioSesion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TFMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegistroActionPerformed
         //Aqui crear llamar al metodo que añada Usuarios con los parametros que cojamos te la interfaz
+        String nombre = TFUsuario.getText();
+        String mail = TFMail.getText();
+        char[] password = PFContraseña.getPassword();
+        String passw = new String(password);
+        if(!nombre.isBlank() && !nombre.isEmpty() &&
+           !mail.isBlank() && !mail.isEmpty() &&
+           !passw.isBlank() && !passw.isEmpty()){
+            
+           if(checkUsuarioRegistro(mail)){
+               Usuarios user = new Usuarios(getLastIdUsuario()+1,nombre,mail,passw);
+               insertarUsuario(user);
+               TFMensaje.setText("Usuario registrado correctamente");
+           }else{
+               TFMensaje.setText("Este correo ya esta registrado");
+           }
+        }else{
+            TFMensaje.setText("Deben estar los campos rellenos");
+        }
     }//GEN-LAST:event_ButtonRegistroActionPerformed
 
     private void ButtonIrAInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIrAInicioSesionActionPerformed
@@ -129,7 +152,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
     private javax.swing.JButton ButtonIrAInicioSesion;
     private javax.swing.JButton ButtonRegistro;
     private javax.swing.JPasswordField PFContraseña;
-    private javax.swing.JPasswordField PFMail;
+    private javax.swing.JTextField TFMail;
     private javax.swing.JTextField TFMensaje;
     private javax.swing.JTextField TFUsuario;
     private javax.swing.JLabel jLContraseña;
