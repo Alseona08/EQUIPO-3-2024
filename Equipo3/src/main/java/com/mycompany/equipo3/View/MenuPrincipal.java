@@ -5,7 +5,6 @@
 package com.mycompany.equipo3.View;
 
 import com.mycompany.equipo3.Model.Usuarios;
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -14,7 +13,6 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -48,15 +46,15 @@ public class MenuPrincipal extends javax.swing.JPanel {
         });
     }
     
-    private void cerrarSesion() {
-        InicioUsuario inicioUsuario = new InicioUsuario(cv1);
+    private void misIntercambios() {
+        BorrarTransaccion brrTran = new BorrarTransaccion(cv1);
         
         // Obtener el tamaño de jContenido
         int jContenidoWidth = jContenido.getWidth();
         int jContenidoHeight = jContenido.getHeight();
         
         // Establecer el tamaño de InicioUsuario al tamaño de jContenido
-        inicioUsuario.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
+        brrTran.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
         
         jContenido.setLayout(new GridBagLayout()); // Example layout manager
         
@@ -64,14 +62,13 @@ public class MenuPrincipal extends javax.swing.JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.anchor = GridBagConstraints.WEST;
         
         // Limpiar los componentes anteriores de jContenido
         jContenido.removeAll();
         
         // Añadir el contenido de InicioUsuario a jContenido
-        cv1.cambiarVista(new InicioUsuario(cv1));
-        jContenido.add(inicioUsuario);
+        jContenido.add(brrTran);
         
         // Revalidar y repintar jContenido
         jContenido.revalidate();
@@ -80,6 +77,76 @@ public class MenuPrincipal extends javax.swing.JPanel {
         if (!jContenido.isVisible()) {
             jContenido.setVisible(true);
         }
+    }
+    
+    private void buscarIntercambios() {
+        MostrarIntercambios mosTran = new MostrarIntercambios(cv1);
+        
+        // Obtener el tamaño de jContenido
+        int jContenidoWidth = jContenido.getWidth();
+        int jContenidoHeight = jContenido.getHeight();
+        
+        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
+        mosTran.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
+        
+        jContenido.setLayout(new GridBagLayout()); // Example layout manager
+        
+        // Create GridBagConstraints for centering
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        
+        // Limpiar los componentes anteriores de jContenido
+        jContenido.removeAll();
+        
+        // Añadir el contenido de InicioUsuario a jContenido
+        jContenido.add(mosTran);
+        
+        // Revalidar y repintar jContenido
+        jContenido.revalidate();
+        jContenido.repaint();
+        
+        if (!jContenido.isVisible()) {
+            jContenido.setVisible(true);
+        }
+    }
+    
+    private void reseñas() {
+        ConsultarReseñas res = new ConsultarReseñas();
+        
+        // Obtener el tamaño de jContenido
+        int jContenidoWidth = jContenido.getWidth();
+        int jContenidoHeight = jContenido.getHeight();
+        
+        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
+        res.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
+        
+        jContenido.setLayout(new GridBagLayout()); // Example layout manager
+        
+        // Create GridBagConstraints for centering
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        
+        // Limpiar los componentes anteriores de jContenido
+        jContenido.removeAll();
+        
+        // Añadir el contenido de InicioUsuario a jContenido
+        jContenido.add(res);
+        
+        // Revalidar y repintar jContenido
+        jContenido.revalidate();
+        jContenido.repaint();
+        
+        if (!jContenido.isVisible()) {
+            jContenido.setVisible(true);
+        }
+    }
+    
+    private void cerrarSesion() {
+        cv1.cambiarVista(new InicioUsuario(cv1));
     }
 
     
@@ -93,17 +160,16 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jContenido.removeAll();
 
         switch (opc) {
-            case "Añadir intercambio":
-                break;
             case "Mis Intercambios":
+                misIntercambios();
                 break;
 
             case "Buscar Intercambios":
-                
+                buscarIntercambios();
                 break;
 
             case "Reseñas":
-                
+                reseñas();
                 break;
 
             case "Cerrar Sesión":
@@ -128,7 +194,6 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListOpciones = new javax.swing.JList<>();
         jContenido = new javax.swing.JPanel();
-        label1 = new java.awt.Label();
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
@@ -139,51 +204,38 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jListOpciones);
 
         jContenido.setBackground(new java.awt.Color(255, 255, 255));
-
-        label1.setText("label1");
+        jContenido.setPreferredSize(new java.awt.Dimension(617, 420));
 
         javax.swing.GroupLayout jContenidoLayout = new javax.swing.GroupLayout(jContenido);
         jContenido.setLayout(jContenidoLayout);
         jContenidoLayout.setHorizontalGroup(
             jContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jContenidoLayout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(247, Short.MAX_VALUE))
+            .addGap(0, 678, Short.MAX_VALUE)
         );
         jContenidoLayout.setVerticalGroup(
             jContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jContenidoLayout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
-                .addComponent(jContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(488, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -192,7 +244,6 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private javax.swing.JPanel jContenido;
     private javax.swing.JList<String> jListOpciones;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
 
