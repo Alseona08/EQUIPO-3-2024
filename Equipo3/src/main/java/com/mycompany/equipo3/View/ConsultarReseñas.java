@@ -11,6 +11,7 @@ import java.math.BigInteger;
  *
  * @author gonza
  */
+//a
 public class ConsultarReseñas extends javax.swing.JPanel {
 
     /**
