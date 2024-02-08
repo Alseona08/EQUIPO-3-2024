@@ -4,6 +4,10 @@
  */
 package com.mycompany.equipo3.View;
 
+import com.mycompany.equipo3.Silvia;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  * Mostrará todos los intercambios empezados por otros usuarios, nunca el del propio usuario
  * 
@@ -14,6 +18,7 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     private int idUsuario=1;
 
     CamVis cv1;
+    private int idTransaccionSeleccionada;
     public MostrarIntercambios(CamVis cv1) {
         this.cv1 = cv1;
         initComponents();
@@ -32,7 +37,6 @@ public class MostrarIntercambios extends javax.swing.JPanel {
         jLUsuario = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         btnTitulo = new java.awt.Button();
-        scrollPane1 = new java.awt.ScrollPane();
         jLabel2 = new javax.swing.JLabel();
         txtTitulo = new java.awt.TextField();
         btnBuscar = new java.awt.Button();
@@ -40,6 +44,8 @@ public class MostrarIntercambios extends javax.swing.JPanel {
         txtCategoria = new java.awt.TextField();
         btnCategoria = new java.awt.Button();
         lblNull = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         jLabel1.setText("MOSTRAR INTERCAMBIOS");
 
@@ -84,19 +90,20 @@ public class MostrarIntercambios extends javax.swing.JPanel {
         lblNull.setText("No se encontró ningún intercambio de su interés");
         lblNull.setEnabled(false);
 
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
@@ -110,14 +117,15 @@ public class MostrarIntercambios extends javax.swing.JPanel {
                                 .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblNull, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnConfirmar)))
+                        .addComponent(btnConfirmar))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -139,9 +147,9 @@ public class MostrarIntercambios extends javax.swing.JPanel {
                     .addComponent(btnCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar)
                     .addComponent(lblNull))
@@ -152,12 +160,34 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        //Metodo para borrar transaccion
-        //Metodo para comprobar si el usuario tiene el libro pedido (por hacer)
+        String itemSeleccionado = (String) jList1.getSelectedValue();
+
+        // Encontrar la posición del primer espacio en el texto
+        int espacioIndex = itemSeleccionado.indexOf(' ');
+
+        // Extraer la parte del texto correspondiente al ID de la transacción
+        String idTransaccionString = itemSeleccionado.substring(0, espacioIndex);
+
+        // Convertir el ID de transacción a entero
+        idTransaccionSeleccionada = Integer.parseInt(idTransaccionString);
+        
+        Silvia.borrarTransaccion(idTransaccionSeleccionada);
+        
+        DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
+        modeloLista.clear();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTituloActionPerformed
-        //Metodo para mostrar transacciones por titulo
+        String titulo=txtTitulo.getText().toString();
+        ArrayList<String> consulta = Silvia.consultaIntercambiosPorTitulo(titulo);
+        
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        for (String c : consulta) {
+            modeloLista.addElement(c);
+        }
+
+        // Establecer el modelo de lista en el JList
+        jList1.setModel(modeloLista);
     }//GEN-LAST:event_btnTituloActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -165,7 +195,17 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
-        //Metodo para mostrar transacciones por categoria
+        String categoria=txtCategoria.getText().toString();
+        ArrayList<String> consulta = Silvia.consultaIntercambiosPorCategoria(categoria);
+        
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        for (String c : consulta) {
+            modeloLista.addElement(c);
+        }
+
+        // Establecer el modelo de lista en el JList
+        jList1.setModel(modeloLista);
+             
     }//GEN-LAST:event_btnCategoriaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -177,8 +217,9 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNull;
-    private java.awt.ScrollPane scrollPane1;
     private java.awt.TextField txtCategoria;
     private java.awt.TextField txtTitulo;
     // End of variables declaration//GEN-END:variables

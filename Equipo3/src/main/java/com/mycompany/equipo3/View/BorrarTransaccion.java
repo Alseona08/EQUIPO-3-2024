@@ -6,6 +6,8 @@ package com.mycompany.equipo3.View;
 
 import com.mycompany.equipo3.Model.Usuarios;
 import com.mycompany.equipo3.Silvia;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +20,7 @@ public class BorrarTransaccion extends javax.swing.JPanel {
 
     CamVis cv1;
     Usuarios usuario;
-
+    private int idTransaccionSeleccionada;
     public BorrarTransaccion(CamVis cv1, Usuarios usuario) {
         this.cv1 = cv1;
         this.usuario = usuario;
@@ -59,24 +61,33 @@ public class BorrarTransaccion extends javax.swing.JPanel {
             }
         });
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLUsuario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                        .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEliminar)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnEliminar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLUsuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -99,7 +110,8 @@ public class BorrarTransaccion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        Silvia.borrarTransaccion(1);
+        Silvia.borrarTransaccion(idTransaccionSeleccionada);
+        jComboBox1.removeAllItems();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
@@ -109,6 +121,25 @@ public class BorrarTransaccion extends javax.swing.JPanel {
             jComboBox1.addItem(consulta.get(i));
         }
     }//GEN-LAST:event_btnConectarActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        jComboBox1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Obtener el ítem seleccionado del JComboBox
+            String itemSeleccionado = (String) jComboBox1.getSelectedItem();
+
+            // Encontrar la posición del primer espacio en el texto
+            int espacioIndex = itemSeleccionado.indexOf(' ');
+
+            // Extraer la parte del texto correspondiente al ID de la transacción
+            String idTransaccionString = itemSeleccionado.substring(0, espacioIndex);
+
+            // Convertir el ID de transacción a entero
+            idTransaccionSeleccionada = Integer.parseInt(idTransaccionString);
+        }
+    });
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnConectar;

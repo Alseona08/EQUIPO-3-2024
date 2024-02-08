@@ -39,6 +39,7 @@ public class Silvia {
      * @param idTransaccion
      */
     public static void borrarTransaccion(int idTransaccion) {
+        inicializaFactory();
         em.getTransaction().begin();
 
         Transacciones tr = em.find(Transacciones.class, idTransaccion, LockModeType.PESSIMISTIC_READ);
@@ -52,6 +53,9 @@ public class Silvia {
         em.remove(libroDestino);
 
         em.getTransaction().commit();
+        
+        em.close();
+        emf.close();
     }
 
     /**
@@ -60,7 +64,11 @@ public class Silvia {
      *
      * @param tituloLibro
      */
-    public static void consultaIntercambiosPorTitulo(String tituloLibro) {
+    public static ArrayList<String> consultaIntercambiosPorTitulo(String tituloLibro) {
+        inicializaFactory();
+        
+        String consulta = "";
+        ArrayList<String> result = new ArrayList();
         em.getTransaction().begin();
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -72,17 +80,25 @@ public class Silvia {
         query.select(transRoot).where(cb.equal(librosJoin.get("titulo"), tituloLibro));
 
         List<Transacciones> resultados = em.createQuery(query).getResultList();
-        for (Transacciones transaccion : resultados) {
-            System.out.println("ID de transacción: " + transaccion.getTransaccionid());
-            System.out.println("Estado: " + transaccion.getEstado());
-            System.out.println("ID de libro origen: " + transaccion.getLibroidOrigen().getLibroid());
-            System.out.println("Título de libro origen: " + transaccion.getLibroidOrigen().getTitulo());
+        for (Transacciones t : resultados) {
+            consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
+            System.out.println(consulta);
+            result.add(consulta);
         }
 
+        // Confirmar la transacción
         em.getTransaction().commit();
+        
+        em.close();
+        emf.close();
+        
+        return result;
     }
 
-    public static void consultaIntercambiosPorCategoria(String nombreCategoria) {
+    public static ArrayList<String> consultaIntercambiosPorCategoria(String nombreCategoria) {
+        inicializaFactory();
+        String consulta = "";
+        ArrayList<String> result = new ArrayList();
         em.getTransaction().begin();
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -96,15 +112,19 @@ public class Silvia {
         query.select(transRoot).where(cb.equal(categoriasJoin.get("nombre"), nombreCategoria));
 
         List<Transacciones> resultados = em.createQuery(query).getResultList();
-        for (Transacciones transaccion : resultados) {
-            System.out.println("ID de transacción: " + transaccion.getTransaccionid());
-            System.out.println("Estado: " + transaccion.getEstado());
-            System.out.println("ID de libro origen: " + transaccion.getLibroidOrigen().getLibroid());
-            System.out.println("Título de libro origen: " + transaccion.getLibroidOrigen().getTitulo());
+        for (Transacciones t : resultados) {
+            consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
+            System.out.println(consulta);
+            result.add(consulta);
         }
 
         // Confirmar la transacción
         em.getTransaction().commit();
+        
+        em.close();
+        emf.close();
+        
+        return result;
     }
 
     public static ArrayList<String> consultaTransaccionesUsuario(int idUsuario) {
@@ -123,10 +143,15 @@ public class Silvia {
 
         while (it.hasNext()) {
             t = it.next();
-            consulta = "Libro ofrecido: " + t.getLibroidOrigen() + " - Libro pedido: " + t.getLibroidDestino() + " - Estado: " + t.getEstado();
+            consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
             System.out.println(consulta);
             result.add(consulta);
         }
+        
+        em.getTransaction().commit();
+        
+        em.close();
+        emf.close();
 
         return result;
     }
