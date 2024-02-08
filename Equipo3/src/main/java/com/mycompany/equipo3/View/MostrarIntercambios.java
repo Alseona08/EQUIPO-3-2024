@@ -4,6 +4,7 @@
  */
 package com.mycompany.equipo3.View;
 
+<<<<<<< Updated upstream
 /**
  * Mostrará todos los intercambios empezados por otros usuarios, nunca el del propio usuario
  * 
@@ -12,6 +13,17 @@ package com.mycompany.equipo3.View;
 public class MostrarIntercambios extends javax.swing.JPanel {
     
     private int idUsuario=1;
+=======
+import static com.mycompany.equipo3.Alex.insertarUsuario;
+import static com.mycompany.equipo3.Miguel.*;
+import com.mycompany.equipo3.Model.Usuarios;
+
+/**
+ *
+ * @author migue
+ */
+public class MostrarIntercambios extends javax.swing.JPanel {
+>>>>>>> Stashed changes
 
     CamVis cv1;
     public MostrarIntercambios(CamVis cv1) {
@@ -29,6 +41,7 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+<<<<<<< Updated upstream
         jLUsuario = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         btnTitulo = new java.awt.Button();
@@ -47,20 +60,55 @@ public class MostrarIntercambios extends javax.swing.JPanel {
 
         btnConfirmar.setText("Aceptar intercambio");
         btnConfirmar.setActionCommand("");
+=======
+        jLMail = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLMail1 = new javax.swing.JLabel();
+        btnTitulo = new javax.swing.JButton();
+        txtTitulo = new java.awt.TextField();
+        jLMail2 = new javax.swing.JLabel();
+        txtCategoria = new java.awt.TextField();
+        btnCategoria = new javax.swing.JButton();
+        scrollPane1 = new java.awt.ScrollPane();
+
+        jLabel1.setText("MOSTRAR INTERCAMBIOS");
+
+        jLMail.setText("Pulse el botón para buscar todos los intercambios");
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnConfirmar.setText("Aceptar intercambio");
+>>>>>>> Stashed changes
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
             }
         });
 
+<<<<<<< Updated upstream
         btnTitulo.setActionCommand("btnBuscarTitulo");
         btnTitulo.setLabel("Buscar por título");
+=======
+        jLabel2.setText("No se encontró ningún intercambio de interés");
+
+        jLMail1.setText("Busque el título que quiera");
+
+        btnTitulo.setText("Buscar por título");
+>>>>>>> Stashed changes
         btnTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTituloActionPerformed(evt);
             }
         });
 
+<<<<<<< Updated upstream
         jLabel2.setText("Busque el título que quiera");
 
         btnBuscar.setActionCommand("btnConectar");
@@ -75,19 +123,34 @@ public class MostrarIntercambios extends javax.swing.JPanel {
 
         btnCategoria.setActionCommand("btnBuscarTitulo");
         btnCategoria.setLabel("Buscar por categoría");
+=======
+        jLMail2.setText("Busque la categoría que quiera");
+
+        txtCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnCategoria.setText("Buscar por categoría");
+>>>>>>> Stashed changes
         btnCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCategoriaActionPerformed(evt);
             }
         });
 
+<<<<<<< Updated upstream
         lblNull.setText("No se encontró ningún intercambio de su interés");
         lblNull.setEnabled(false);
 
+=======
+>>>>>>> Stashed changes
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< Updated upstream
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -119,10 +182,47 @@ public class MostrarIntercambios extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnConfirmar)))
                 .addGap(142, 142, 142))
+=======
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLMail1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLMail2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(19, 19, 19)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLMail, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCategoria)
+                            .addComponent(btnTitulo)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnConfirmar))
+                    .addComponent(scrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(78, 78, 78))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,6 +251,42 @@ public class MostrarIntercambios extends javax.swing.JPanel {
         btnTitulo.getAccessibleContext().setAccessibleName("btnBuscarTitulo");
     }// </editor-fold>//GEN-END:initComponents
 
+=======
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLMail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLMail1)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLMail2)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCategoria)
+                        .addGap(3, 3, 3)))
+                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmar)
+                    .addComponent(jLabel2))
+                .addGap(49, 49, 49))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        //Metodo de gonzalo mostrar todos los intercambios
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+>>>>>>> Stashed changes
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         //Metodo para borrar transaccion
         //Metodo para comprobar si el usuario tiene el libro pedido (por hacer)
@@ -160,14 +296,18 @@ public class MostrarIntercambios extends javax.swing.JPanel {
         //Metodo para mostrar transacciones por titulo
     }//GEN-LAST:event_btnTituloActionPerformed
 
+<<<<<<< Updated upstream
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //Metodo de gonzalo mostrar todos los intercambios
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+=======
+>>>>>>> Stashed changes
     private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
         //Metodo para mostrar transacciones por categoria
     }//GEN-LAST:event_btnCategoriaActionPerformed
 
+<<<<<<< Updated upstream
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnBuscar;
     private java.awt.Button btnCategoria;
@@ -178,6 +318,23 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblNull;
+=======
+    private void txtCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCategoriaActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCategoria;
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnTitulo;
+    private javax.swing.JLabel jLMail;
+    private javax.swing.JLabel jLMail1;
+    private javax.swing.JLabel jLMail2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+>>>>>>> Stashed changes
     private java.awt.ScrollPane scrollPane1;
     private java.awt.TextField txtCategoria;
     private java.awt.TextField txtTitulo;

@@ -4,6 +4,7 @@
  */
 package com.mycompany.equipo3.View;
 
+<<<<<<< Updated upstream
 /**
  * 
  * @author b15-08m
@@ -11,6 +12,17 @@ package com.mycompany.equipo3.View;
 public class BorrarTransaccion extends javax.swing.JPanel {
     
     private int idUsuario=1;
+=======
+import static com.mycompany.equipo3.Alex.insertarUsuario;
+import static com.mycompany.equipo3.Miguel.*;
+import com.mycompany.equipo3.Model.Usuarios;
+
+/**
+ *
+ * @author migue
+ */
+public class BorrarTransaccion extends javax.swing.JPanel {
+>>>>>>> Stashed changes
 
     CamVis cv1;
     public BorrarTransaccion(CamVis cv1) {
@@ -28,13 +40,20 @@ public class BorrarTransaccion extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+<<<<<<< Updated upstream
         jLUsuario = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnConectar = new java.awt.Button();
+=======
+        jLMail = new javax.swing.JLabel();
+        btnConectar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+>>>>>>> Stashed changes
         jComboBox1 = new javax.swing.JComboBox<>();
 
         jLabel1.setText("BORRAR INTERCAMBIOS");
 
+<<<<<<< Updated upstream
         jLUsuario.setText("Pulse el botón para buscar sus intercambios");
 
         btnEliminar.setText("Eliminar");
@@ -49,6 +68,22 @@ public class BorrarTransaccion extends javax.swing.JPanel {
         btnConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConectarActionPerformed(evt);
+=======
+        jLMail.setText("Pulse el botón para buscar sus intercambios");
+
+        btnConectar.setText("Conectar");
+        btnConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConectarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setActionCommand("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+>>>>>>> Stashed changes
             }
         });
 
@@ -58,6 +93,7 @@ public class BorrarTransaccion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< Updated upstream
             .addGroup(layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -74,10 +110,28 @@ public class BorrarTransaccion extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(152, 152, 152))
+=======
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 184, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(108, 108, 108))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(56, 56, 56)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
@@ -94,10 +148,31 @@ public class BorrarTransaccion extends javax.swing.JPanel {
         btnConectar.getAccessibleContext().setAccessibleName("btnConectar");
     }// </editor-fold>//GEN-END:initComponents
 
+=======
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLMail)
+                    .addComponent(btnConectar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134)
+                .addComponent(btnEliminar)
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+        //Llamar al método que consulta los datos de una transaccion segun el usuario
+    }//GEN-LAST:event_btnConectarActionPerformed
+
+>>>>>>> Stashed changes
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         //Llamar método que borra transaccion
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+<<<<<<< Updated upstream
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         //Llamar al método que consulta los datos de una transaccion segun el usuario
     }//GEN-LAST:event_btnConectarActionPerformed
@@ -107,6 +182,14 @@ public class BorrarTransaccion extends javax.swing.JPanel {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLUsuario;
+=======
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConectar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLMail;
+>>>>>>> Stashed changes
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
