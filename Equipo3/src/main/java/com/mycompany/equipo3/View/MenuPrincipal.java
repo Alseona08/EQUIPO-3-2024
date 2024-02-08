@@ -46,7 +46,73 @@ public class MenuPrincipal extends javax.swing.JPanel {
         });
     }
     
-    private void misIntercambios() {
+    private void añadirIntercambios() {
+        InserModiTrans inser = new InserModiTrans(cv1, "Insertar", usuario);
+        
+        // Obtener el tamaño de jContenido
+        int jContenidoWidth = jContenido.getWidth();
+        int jContenidoHeight = jContenido.getHeight();
+        
+        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
+        inser.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
+        
+        jContenido.setLayout(new GridBagLayout()); // Example layout manager
+        
+        // Create GridBagConstraints for centering
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        
+        // Limpiar los componentes anteriores de jContenido
+        jContenido.removeAll();
+        
+        // Añadir el contenido de InicioUsuario a jContenido
+        jContenido.add(inser);
+        
+        // Revalidar y repintar jContenido
+        jContenido.revalidate();
+        jContenido.repaint();
+        
+        if (!jContenido.isVisible()) {
+            jContenido.setVisible(true);
+        }
+    }
+    
+    private void modificarIntercambios() {
+        InserModiTrans mod = new InserModiTrans(cv1, "Modificar", usuario);
+        
+        // Obtener el tamaño de jContenido
+        int jContenidoWidth = jContenido.getWidth();
+        int jContenidoHeight = jContenido.getHeight();
+        
+        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
+        mod.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
+        
+        jContenido.setLayout(new GridBagLayout()); // Example layout manager
+        
+        // Create GridBagConstraints for centering
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        
+        // Limpiar los componentes anteriores de jContenido
+        jContenido.removeAll();
+        
+        // Añadir el contenido de InicioUsuario a jContenido
+        jContenido.add(mod);
+        
+        // Revalidar y repintar jContenido
+        jContenido.revalidate();
+        jContenido.repaint();
+        
+        if (!jContenido.isVisible()) {
+            jContenido.setVisible(true);
+        }
+    }
+    
+    private void borrarIntercambios() {
         BorrarTransaccion brrTran = new BorrarTransaccion(cv1, usuario);
         
         // Obtener el tamaño de jContenido
@@ -160,8 +226,13 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jContenido.removeAll();
 
         switch (opc) {
-            case "Mis Intercambios":
-                misIntercambios();
+            case "Añadir Intercambios":
+                añadirIntercambios();
+                break;
+            case "Modificar Intercambios":
+                break;
+            case "Borrar Intercambios":
+                borrarIntercambios();
                 break;
 
             case "Buscar Intercambios":
@@ -197,7 +268,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Mis Intercambios", "Buscar Intercambios", "Reseñas", "Cerrar Sesión" };
+            String[] strings = { "Añadir Intercambios", "Modificar Intercambios", "Borrar Intercambios", "Buscar Intercambios", "Reseñas", "Cerrar Sesión" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
