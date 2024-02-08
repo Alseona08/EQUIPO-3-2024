@@ -41,7 +41,7 @@ public class Resenas implements Serializable {
     @Column(name = "CONTENIDO")
     private String contenido;
     @Column(name = "CALIFICACION")
-    private BigInteger calificacion;
+    private int calificacion;
     @JoinColumn(name = "LIBROID", referencedColumnName = "LIBROID")
     @ManyToOne
     private Libros libroid;
@@ -74,11 +74,11 @@ public class Resenas implements Serializable {
         this.contenido = contenido;
     }
 
-    public BigInteger getCalificacion() {
+    public int getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(BigInteger calificacion) {
+    public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
 

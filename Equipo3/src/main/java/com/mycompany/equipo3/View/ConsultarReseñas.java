@@ -69,6 +69,7 @@ public class ConsultarReseñas extends javax.swing.JPanel {
             }
         });
 
+        txtArea.setEditable(false);
         txtArea.setColumns(20);
         txtArea.setRows(5);
         mostrarScrollPanel.setViewportView(txtArea);
@@ -127,8 +128,9 @@ public class ConsultarReseñas extends javax.swing.JPanel {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
    
-        if(tituloTxtField.toString().isEmpty() || calificacionTxtField.toString().isEmpty()){
+        if(tituloTxtField.getText().isEmpty() || calificacionTxtField.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Tanto el título como la calificación deben estar rellenadas.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Estan vacios perra");
         }else{
              Gonzalo.consultaMasivaReseñaPorTituloYCalificacion(tituloTxtField.getText(),Integer.parseInt(calificacionTxtField.getText()), txtArea);
         }

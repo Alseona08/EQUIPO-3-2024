@@ -36,6 +36,7 @@ public class MostrarTodosIntercambios extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("MOSTRAR TODOS LOS INTERCAMBIOS");
 
+        txtArea.setEditable(false);
         txtArea.setColumns(20);
         txtArea.setRows(5);
         scrollPane.setViewportView(txtArea);

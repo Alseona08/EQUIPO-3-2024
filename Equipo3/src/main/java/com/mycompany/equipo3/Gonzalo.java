@@ -23,10 +23,9 @@ import javax.swing.JTextArea;
 
 public class Gonzalo {
     
-        private static EntityManagerFactory emf;
-        private static EntityManager em;
-        
+       
     public static void listadoRegistros(JTextArea txtArea){
+        EntityManager em = JPAUtil.getEntityManager();
         Transacciones transaccion;
         TypedQuery<Transacciones> query = em.createQuery("SELECT t from Transacciones t",Transacciones.class);
         
@@ -57,8 +56,10 @@ public class Gonzalo {
     }
     
     public static void consultaMasivaReseñaPorTituloYCalificacion(String titulo, int calificacion,JTextArea txtArea){
+        EntityManager em = JPAUtil.getEntityManager();
         Resenas resena;
-        TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid.titulo =: TITULOP and r.calificacion =: CALIFICACIONP ", Resenas.class);
+        TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid.titulo =: TITULOP AND r.calificacion =: CALIFICACIONP", Resenas.class);
+        
         query.setParameter("TITULOP", titulo);
         query.setParameter("CALIFICACIONP", calificacion);
         
@@ -91,17 +92,13 @@ public class Gonzalo {
         } 
         
     }
-    public static void inicializaFactory(){
-        emf = Persistence.createEntityManagerFactory ("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");
-        em = emf.createEntityManager();
-    }
+   
+    
+     
     
     
-    public static void main(String[] args){
-        inicializaFactory();
-        System.out.println("hola");
-        em.close();
-        emf.close();
-    }
+   
+    
+    
     
 }

@@ -36,34 +36,34 @@ import javax.persistence.Table;
     @NamedQuery(name = "Libros.findByAutor", query = "SELECT l FROM Libros l WHERE l.autor = :autor"),
     @NamedQuery(name = "Libros.findByDescripcion", query = "SELECT l FROM Libros l WHERE l.descripcion = :descripcion"),
     @NamedQuery(name = "Libros.findByEstado", query = "SELECT l FROM Libros l WHERE l.estado = :estado")})
-public class Libros implements Serializable {
+    public class Libros implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @Column(name = "LIBROID")
-    private int libroid;
-    @Column(name = "TITULO")
-    private String titulo;
-    @Column(name = "AUTOR")
-    private String autor;
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @Column(name = "ESTADO")
-    private String estado;
-    @OneToMany(mappedBy = "libroid")
-    private Collection<Resenas> resenasCollection;
-    @JoinColumn(name = "CATEGORIAID", referencedColumnName = "CATEGORIAID")
-    @ManyToOne
-    private Categorias categoriaid;
-    @JoinColumn(name = "USUARIOID", referencedColumnName = "USUARIOID")
-    @ManyToOne
-    private Usuarios usuarioid;
-    @OneToMany(mappedBy = "libroidDestino")
-    private Collection<Transacciones> transaccionesCollection;
-    @OneToMany(mappedBy = "libroidOrigen")
-    private Collection<Transacciones> transaccionesCollection1;
+        private static final long serialVersionUID = 1L;
+        // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+        @Id
+        @Basic(optional = false)
+        @Column(name = "LIBROID")
+        private int libroid;
+        @Column(name = "TITULO")
+        private String titulo;
+        @Column(name = "AUTOR")
+        private String autor;
+        @Column(name = "DESCRIPCION")
+        private String descripcion;
+        @Column(name = "ESTADO")
+        private String estado;
+        @OneToMany(mappedBy = "libroid")
+        private Collection<Resenas> resenasCollection;
+        @JoinColumn(name = "CATEGORIAID", referencedColumnName = "CATEGORIAID")
+        @ManyToOne
+        private Categorias categoriaid;
+        @JoinColumn(name = "USUARIOID", referencedColumnName = "USUARIOID")
+        @ManyToOne
+        private Usuarios usuarioid;
+        @OneToMany(mappedBy = "libroidDestino")
+        private Collection<Transacciones> transaccionesCollection;
+        @OneToMany(mappedBy = "libroidOrigen")
+        private Collection<Transacciones> transaccionesCollection1;
 
     public Libros() {
     }
