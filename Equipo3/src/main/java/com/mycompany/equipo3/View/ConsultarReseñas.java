@@ -121,7 +121,7 @@ public class ConsultarReseñas extends javax.swing.JPanel {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
    
-        Gonzalo.consultaMasivaReseñaPorTituloYCalificacion(tituloTxtField.getText(),Integer.parseInt(calificacionTxtField.getText()), mostrarScrollPanel);
+        //Gonzalo.consultaMasivaReseñaPorTituloYCalificacion(tituloTxtField.getText(),Integer.parseInt(calificacionTxtField.getText()), mostrarScrollPanel);
         
     }//GEN-LAST:event_btnConsultarActionPerformed
 

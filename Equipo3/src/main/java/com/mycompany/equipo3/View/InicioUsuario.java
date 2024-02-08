@@ -1,6 +1,9 @@
 
 package com.mycompany.equipo3.View;
 
+import com.mycompany.equipo3.Miguel;
+import static com.mycompany.equipo3.Miguel.getUsuarioLoged;
+
 public class InicioUsuario extends javax.swing.JPanel {
 
     CamVis cv1;
@@ -93,7 +96,20 @@ public class InicioUsuario extends javax.swing.JPanel {
 
     private void ButtonInicioSesionToAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonInicioSesionToAlbumActionPerformed
         //Crear metodo que compruebe si dicho usuario esta, si esta deja continuar y si no muestre un mensaje de usuario no registrado
-        cv1.cambiarVista(new Menu(cv1));
+        String nombre = TFUsuario.getText();
+        char[] password = PFContraseña.getPassword();
+        String passw = new String(password);
+        if(!nombre.isBlank() && !nombre.isEmpty() &&
+           !passw.isBlank() && !passw.isEmpty()){
+            if(Miguel.checkUsuarioLogin(nombre, passw)){
+                
+                cv1.cambiarVista(new MenuPrincipal(cv1,getUsuarioLoged(nombre, passw)));
+            }else{
+                TFMensaje.setText("Usuario no encontrado, registrese");
+            }
+        }else{
+            TFMensaje.setText("Usuario o contraseña vacios");
+        }
     }//GEN-LAST:event_ButtonInicioSesionToAlbumActionPerformed
 
     private void ButtonIraRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIraRegistroActionPerformed

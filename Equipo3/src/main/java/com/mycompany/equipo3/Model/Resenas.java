@@ -41,7 +41,7 @@ public class Resenas implements Serializable {
     @Column(name = "CONTENIDO")
     private String contenido;
     @Column(name = "CALIFICACION")
-    private int calificacion;
+    private BigInteger calificacion;
     @JoinColumn(name = "LIBROID", referencedColumnName = "LIBROID")
     @ManyToOne
     private Libros libroid;
@@ -64,6 +64,8 @@ public class Resenas implements Serializable {
         this.resenaid = resenaid;
     }
 
+    
+
     public String getContenido() {
         return contenido;
     }
@@ -72,11 +74,11 @@ public class Resenas implements Serializable {
         this.contenido = contenido;
     }
 
-    public int getCalificacion() {
+    public BigInteger getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(int calificacion) {
+    public void setCalificacion(BigInteger calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -98,7 +100,7 @@ public class Resenas implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
         return hash;
     }
 
@@ -117,10 +119,10 @@ public class Resenas implements Serializable {
         if (this.resenaid != other.resenaid) {
             return false;
         }
-        if (this.calificacion != other.calificacion) {
+        if (!Objects.equals(this.contenido, other.contenido)) {
             return false;
         }
-        if (!Objects.equals(this.contenido, other.contenido)) {
+        if (!Objects.equals(this.calificacion, other.calificacion)) {
             return false;
         }
         if (!Objects.equals(this.libroid, other.libroid)) {

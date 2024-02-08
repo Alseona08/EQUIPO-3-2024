@@ -7,9 +7,12 @@ package com.mycompany.equipo3.Model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Objects;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -30,27 +33,39 @@ public class Categorias implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue
     @Basic(optional = false)
     @Column(name = "CATEGORIAID")
-    private BigDecimal categoriaid;
+    private int categoriaid;
     @Column(name = "NOMBRE")
     private String nombre;
-    @OneToMany(mappedBy = "categoriaid")
+    @OneToMany(mappedBy = "categoriaid",orphanRemoval=true)
     private Collection<Libros> librosCollection;
 
     public Categorias() {
     }
 
-    public Categorias(BigDecimal categoriaid) {
+    public Categorias(int categoriaid) {
         this.categoriaid = categoriaid;
     }
+    
+    public Categorias(String nombre) {
+        this.nombre = nombre;
+        this.librosCollection = null;
+    }
+    
+    public Categorias(int categoriaid, String nombre) {
+        this.categoriaid = categoriaid;
+        this.nombre = nombre;
+        this.librosCollection = null;
+    }
+    
 
-    public BigDecimal getCategoriaid() {
+    public int getCategoriaid() {
         return categoriaid;
     }
 
-    public void setCategoriaid(BigDecimal categoriaid) {
+    public void setCategoriaid(int categoriaid) {
         this.categoriaid = categoriaid;
     }
 
@@ -72,23 +87,32 @@ public class Categorias implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (categoriaid != null ? categoriaid.hashCode() : 0);
+        int hash = 7;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Categorias)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Categorias other = (Categorias) object;
-        if ((this.categoriaid == null && other.categoriaid != null) || (this.categoriaid != null && !this.categoriaid.equals(other.categoriaid))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Categorias other = (Categorias) obj;
+        if (this.categoriaid != other.categoriaid) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return Objects.equals(this.librosCollection, other.librosCollection);
     }
+
+    
 
     @Override
     public String toString() {
