@@ -47,7 +47,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }
     
     private void misIntercambios() {
-        BorrarTransaccion brrTran = new BorrarTransaccion(cv1);
+        BorrarTransaccion brrTran = new BorrarTransaccion(cv1, usuario);
         
         // Obtener el tamaño de jContenido
         int jContenidoWidth = jContenido.getWidth();
