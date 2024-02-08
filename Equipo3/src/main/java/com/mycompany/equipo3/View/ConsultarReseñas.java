@@ -6,6 +6,7 @@ package com.mycompany.equipo3.View;
 
 import com.mycompany.equipo3.Gonzalo;
 import java.math.BigInteger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +39,7 @@ public class ConsultarReseñas extends javax.swing.JPanel {
         calificacionTxtField = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         mostrarScrollPanel = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -66,6 +68,10 @@ public class ConsultarReseñas extends javax.swing.JPanel {
                 btnConsultarActionPerformed(evt);
             }
         });
+
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        mostrarScrollPanel.setViewportView(txtArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,7 +127,11 @@ public class ConsultarReseñas extends javax.swing.JPanel {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
    
-        //Gonzalo.consultaMasivaReseñaPorTituloYCalificacion(tituloTxtField.getText(),Integer.parseInt(calificacionTxtField.getText()), mostrarScrollPanel);
+        if(tituloTxtField.toString().isEmpty() || calificacionTxtField.toString().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Tanto el título como la calificación deben estar rellenadas.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+        }else{
+             Gonzalo.consultaMasivaReseñaPorTituloYCalificacion(tituloTxtField.getText(),Integer.parseInt(calificacionTxtField.getText()), txtArea);
+        }
         
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -139,5 +149,6 @@ public class ConsultarReseñas extends javax.swing.JPanel {
     private javax.swing.JScrollPane mostrarScrollPanel;
     private javax.swing.JLabel tituloLabel;
     private javax.swing.JTextField tituloTxtField;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }

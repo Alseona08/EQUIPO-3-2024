@@ -26,7 +26,7 @@ public class Gonzalo {
         private static EntityManagerFactory emf;
         private static EntityManager em;
         
-    public static void listadoRegistros(){
+    public static void listadoRegistros(JTextArea txtArea){
         Transacciones transaccion;
         TypedQuery<Transacciones> query = em.createQuery("SELECT t from Transacciones t",Transacciones.class);
         
@@ -34,22 +34,25 @@ public class Gonzalo {
             Collection<Transacciones> coleccion=query.getResultList();
             Iterator<Transacciones> it=coleccion.iterator();
             
-            System.out.print("TransaccionID \t");
-            System.out.print("LibroID_Origen \t");
-            System.out.print("LibroID_Destino \t");
-            System.out.print("Estado");
+            // Limpia el contenido del JTextArea
+            txtArea.setText("");
+            
+            // Concatena los resultados en el JTextArea
+            StringBuilder resultado = new StringBuilder();
+            resultado.append("ID libro origen \tID libro destino \tEstado\n");
+            
                     
             while (it.hasNext()){
                 transaccion=it.next();
-                System.out.print(transaccion.getTransaccionid()+"\t");
-                System.out.print(transaccion.getLibroidOrigen()+"\t");
-                System.out.print(transaccion.getLibroidDestino()+"\t");
-                System.out.println(transaccion.getEstado());
+                resultado.append(transaccion.getLibroidOrigen().getTitulo());
+                resultado.append(transaccion.getLibroidDestino().getTitulo());
+                resultado.append(transaccion.getEstado());
                 
             }
+            txtArea.append(resultado.toString());
         }
         catch(NoResultException e){
-            System.out.println("No hay datos");
+            System.out.println("No hay datos en la base de datos.");
         } 
     }
     
