@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.LockModeType;
@@ -50,7 +51,7 @@ public class Alex {
     public static void insertarTransaccion(int transaccionid, String estado,Libros lib1,Libros lib2,Usuarios usu){
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        Transacciones trans = new Transacciones(transaccionid,estado,lib1,lib2,usu);
+        Transacciones trans = new Transacciones(transaccionid,estado,lib2,lib1,usu);
         em.persist(trans);
         em.getTransaction().commit();
     }
@@ -63,15 +64,25 @@ public class Alex {
     }
     
     
-    private static void modificarLibro(Libros lib, String titulo, String autor, String descripcion, String estado,int categoriaid, String categorianombre){
+    public static Libros modificarLibro(Libros lib, String titulo, String autor, String descripcion, String estado, String categorianombre){
+        EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-       
-        lib.getCategoriaid().setNombre(categorianombre);
+        
+        if(getCategorias(categorianombre)){
+            TypedQuery <Categorias> query=em.createQuery("select c from Categorias c where c.nombre=:CAT",Categorias.class);
+            query.setParameter("CAT", categorianombre);
+            Categorias cat=query.getSingleResult();
+            lib.setCategoriaid(cat);
+        }else{
+            lib.getCategoriaid().setNombre(categorianombre);
+        }
+                 
         lib.setTitulo(titulo);
         lib.setAutor(autor);
         lib.setDescripcion(descripcion);
         lib.setEstado(estado);
         em.getTransaction().commit(); 
+        return lib;
     }
     
     
@@ -115,6 +126,20 @@ public class Alex {
             id = query.getSingleResult();
         }
         return id;
+    }
+    
+    public static boolean getCategorias(String cat){
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery <Long> tq=em.createQuery("select count(c) from Categorias c where c.nombre=:nombre",Long.class);
+        tq.setParameter("nombre", cat);
+        Long aux=tq.getSingleResult();
+        boolean sol=false;
+        
+        if(aux!=0){
+            sol=true;
+        }
+        
+        return sol;
     }
     
     

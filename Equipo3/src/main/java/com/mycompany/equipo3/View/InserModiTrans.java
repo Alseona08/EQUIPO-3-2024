@@ -7,6 +7,7 @@ package com.mycompany.equipo3.View;
 
 import static com.mycompany.equipo3.Alex.*;
 import com.mycompany.equipo3.Model.Libros;
+import com.mycompany.equipo3.Model.Transacciones;
 import com.mycompany.equipo3.Model.Usuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,6 +21,9 @@ public class InserModiTrans extends javax.swing.JPanel {
     CamVis cv1;
     String text;
     Usuarios usuario;
+    Libros lib1;
+    Libros lib2;
+    
     public InserModiTrans(CamVis cv1,String text, Usuarios usuario) {
         this.cv1 = cv1;
         this.text = text;
@@ -27,6 +31,24 @@ public class InserModiTrans extends javax.swing.JPanel {
         initComponents();
         jButton1.setText(text);
         LTitulo.setText(text.toUpperCase() + " TRANSACCIÓN");
+        if("Modificar".equals(jButton1.getText())){
+            Transacciones tr=selectTransaccion(1);
+            lib1=tr.getLibroidOrigen();
+            lib2=tr.getLibroidDestino();
+            TFTitulo1.setText(lib1.getTitulo());
+            TFTitulo2.setText(lib2.getTitulo());
+            TFDescripcion1.setText(lib1.getDescripcion());
+            TFDescripcion2.setText(lib2.getDescripcion());
+            TFEstado1.setText(lib1.getEstado());
+            TFEstado2.setText(lib2.getEstado());
+            TFAutor1.setText(lib1.getAutor());
+            TFAutor2.setText(lib2.getAutor());
+            TFCategoria1.setText(lib1.getCategoriaid().getNombre());
+            TFCategoria2.setText(lib2.getCategoriaid().getNombre());
+            
+            
+            
+        }
     }
 
     /**
@@ -257,11 +279,13 @@ public class InserModiTrans extends javax.swing.JPanel {
            !Estado2.isBlank() && !Estado2.isEmpty() &&
            !Categoria2.isBlank() && !Categoria2.isEmpty()){
             if("Insertar".equals(jButton1.getText())){
-                    Libros lib1 = insertarLibro(getLastIdLibro()+1, Titulo1, Autor1, Descripcion1, Estado1, Categoria1, usuario);
-                    Libros lib2 = insertarLibro(getLastIdLibro()+1, Titulo2, Autor2, Descripcion2, Estado2, Categoria2, usuario);
+                    lib1 = insertarLibro(getLastIdLibro()+1, Titulo1, Autor1, Descripcion1, Estado1, Categoria1, usuario);
+                    lib2 = insertarLibro(getLastIdLibro()+1, Titulo2, Autor2, Descripcion2, Estado2, Categoria2, usuario);
                     insertarTransaccion(getLastIdTransaccion()+1, "Disponible",lib1,lib2,usuario);
             }else{
                 
+                  lib1=modificarLibro(lib1, Titulo1, Autor1, Descripcion1, Estado1, Categoria1);
+                  lib2=modificarLibro(lib2, Titulo2, Autor2, Descripcion2, Estado2, Categoria2);
             }
         }else{
             LError.setText("Alguno de los campos no esta relleno");
