@@ -41,7 +41,14 @@ public class Alex {
     public static Libros insertarLibro(int libroid, String titulo, String autor, String descripcion, String estado, String categorianombre, Usuarios usuarioid){
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-            Categorias categoria = new Categorias(getLastIdCategoria()+1,categorianombre);
+        Categorias categoria = null;
+        if(getCategorias(categorianombre)){
+            TypedQuery <Categorias> query=em.createQuery("select c from Categorias c where c.nombre=:CAT",Categorias.class);
+            query.setParameter("CAT", categorianombre);
+            categoria =query.getSingleResult();
+        }else{
+            categoria = new Categorias(getLastIdCategoria()+1,categorianombre);
+        }
             em.persist(categoria);
             Libros lib = new Libros(libroid,titulo,autor,descripcion,estado,categoria,usuarioid);
             em.persist(lib);
