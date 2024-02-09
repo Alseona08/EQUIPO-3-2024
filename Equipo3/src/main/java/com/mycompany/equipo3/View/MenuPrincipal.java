@@ -81,7 +81,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }
     
     private void buscarIntercambios() {
-        MostrarIntercambios mosTran = new MostrarIntercambios(cv1);
+        MostrarIntercambios mosTran = new MostrarIntercambios(cv1, usuario);
         
         setContenido(mosTran);
     }

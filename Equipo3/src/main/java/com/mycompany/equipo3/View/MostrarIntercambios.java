@@ -4,6 +4,7 @@
  */
 package com.mycompany.equipo3.View;
 
+import com.mycompany.equipo3.Model.Usuarios;
 import com.mycompany.equipo3.Silvia;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -18,9 +19,11 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     private int idUsuario=1;
 
     CamVis cv1;
+    Usuarios usuario;
     private int idTransaccionSeleccionada;
-    public MostrarIntercambios(CamVis cv1) {
+    public MostrarIntercambios(CamVis cv1, Usuarios usu) {
         this.cv1 = cv1;
+        this.usuario=usu;
         initComponents();
     }
 
@@ -178,10 +181,12 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTituloActionPerformed
-        String titulo=txtTitulo.getText().toString();
-        ArrayList<String> consulta = Silvia.consultaIntercambiosPorTitulo(titulo);
-        
         DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        modeloLista.clear();
+    
+        String titulo = txtTitulo.getText();
+        ArrayList<String> consulta = Silvia.consultaIntercambiosPorTitulo(titulo, usuario.getUsuarioid());
+
         for (String c : consulta) {
             modeloLista.addElement(c);
         }
@@ -191,14 +196,17 @@ public class MostrarIntercambios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTituloActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //Metodo de gonzalo mostrar todos los intercambios
+        DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
+        modeloLista.clear();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
-        String categoria=txtCategoria.getText().toString();
-        ArrayList<String> consulta = Silvia.consultaIntercambiosPorCategoria(categoria);
-        
         DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        modeloLista.clear();
+        
+        String categoria=txtCategoria.getText().toString();
+        ArrayList<String> consulta = Silvia.consultaIntercambiosPorCategoria(categoria, usuario.getUsuarioid());
+        
         for (String c : consulta) {
             modeloLista.addElement(c);
         }

@@ -60,72 +60,92 @@ public class Silvia {
 
     /**
      * Pueden consultarse todas las transacciones que ofrezcan un libro con un
-     * titulo en particular
+     * titulo en particular, comprobando que no sean del usuario que busca la transaccion
      *
      * @param tituloLibro
+     * @param idUsuario
      */
-    public static ArrayList<String> consultaIntercambiosPorTitulo(String tituloLibro) {
+    public static ArrayList<String> consultaIntercambiosPorTitulo(String tituloLibro, int idUsuario) {
         inicializaFactory();
-        
-        String consulta = "";
-        ArrayList<String> result = new ArrayList();
+
+        ArrayList<String> result = new ArrayList<>();
         em.getTransaction().begin();
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Transacciones> query = cb.createQuery(Transacciones.class);
 
         Root<Transacciones> transRoot = query.from(Transacciones.class);
-        Join<Transacciones, Libros> librosJoin = transRoot.join("libroidOrigen");
+        Join<Transacciones, Libros> librosOrigenJoin = transRoot.join("libroidOrigen");
+        Join<Transacciones, Usuarios> usuarioJoin = transRoot.join("usuarioid");
 
-        query.select(transRoot).where(cb.equal(librosJoin.get("titulo"), tituloLibro));
+        query.select(transRoot).where(
+            cb.and(
+                cb.equal(librosOrigenJoin.get("titulo"), tituloLibro),
+                cb.notEqual(usuarioJoin.get("usuarioid"), idUsuario)
+            )
+        );
 
         List<Transacciones> resultados = em.createQuery(query).getResultList();
         for (Transacciones t : resultados) {
-            consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
+            String consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
             System.out.println(consulta);
             result.add(consulta);
         }
 
         // Confirmar la transacción
         em.getTransaction().commit();
-        
+
         em.close();
         emf.close();
-        
+
         return result;
     }
 
-    public static ArrayList<String> consultaIntercambiosPorCategoria(String nombreCategoria) {
+    /**
+     * Pueden consultarse todas las transacciones que ofrezcan un libro con una
+     * categoria en particular, comprobando que no sean del usuario que busca la transaccion
+     * 
+     * @param nombreCategoria
+     * @param idUsuario
+     * @return 
+     */
+    public static ArrayList<String> consultaIntercambiosPorCategoria(String nombreCategoria, int idUsuario) {
         inicializaFactory();
-        String consulta = "";
-        ArrayList<String> result = new ArrayList();
+
+        ArrayList<String> result = new ArrayList<>();
         em.getTransaction().begin();
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
-
         CriteriaQuery<Transacciones> query = cb.createQuery(Transacciones.class);
 
         Root<Transacciones> transRoot = query.from(Transacciones.class);
-        Join<Transacciones, Libros> librosJoin = transRoot.join("libroidOrigen");
-        Join<Libros, Categorias> categoriasJoin = librosJoin.join("categoriaid");
+        Join<Transacciones, Libros> librosOrigenJoin = transRoot.join("libroidOrigen");
+        Join<Libros, Categorias> categoriasJoin = librosOrigenJoin.join("categoriaid");
+        Join<Transacciones, Usuarios> usuarioJoin = transRoot.join("usuarioid");
 
-        query.select(transRoot).where(cb.equal(categoriasJoin.get("nombre"), nombreCategoria));
+        query.select(transRoot).where(
+            cb.and(
+                cb.equal(categoriasJoin.get("nombre"), nombreCategoria),
+                cb.notEqual(usuarioJoin.get("usuarioid"), idUsuario)
+            )
+        );
 
         List<Transacciones> resultados = em.createQuery(query).getResultList();
         for (Transacciones t : resultados) {
-            consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
+            String consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
             System.out.println(consulta);
             result.add(consulta);
         }
 
         // Confirmar la transacción
         em.getTransaction().commit();
-        
+
         em.close();
         emf.close();
-        
+
         return result;
     }
+
 
     public static ArrayList<String> consultaTransaccionesUsuario(int idUsuario) {
         System.out.println("[TRAZA] DENTRO");
