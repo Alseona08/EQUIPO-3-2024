@@ -7,6 +7,7 @@ package com.mycompany.equipo3.View;
 import com.mycompany.equipo3.Model.Usuarios;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.DefaultCellEditor;
@@ -49,20 +50,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private void añadirIntercambios() {
         InserModiTrans inser = new InserModiTrans(cv1, "Insertar", usuario);
         
-        // Obtener el tamaño de jContenido
-        int jContenidoWidth = jContenido.getWidth();
-        int jContenidoHeight = jContenido.getHeight();
-        
-        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
-        inser.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
-        
-        jContenido.setLayout(new GridBagLayout()); // Example layout manager
-        
-        // Create GridBagConstraints for centering
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
+        //jContenido se ajusta a la nueva vista
+        jContenido.setLayout(new FlowLayout());
         
         // Limpiar los componentes anteriores de jContenido
         jContenido.removeAll();
@@ -79,56 +68,11 @@ public class MenuPrincipal extends javax.swing.JPanel {
         }
     }
     
-    private void modificarIntercambios() {
-        InserModiTrans mod = new InserModiTrans(cv1, "Modificar", usuario);
-        
-        // Obtener el tamaño de jContenido
-        int jContenidoWidth = jContenido.getWidth();
-        int jContenidoHeight = jContenido.getHeight();
-        
-        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
-        mod.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
-        
-        jContenido.setLayout(new GridBagLayout()); // Example layout manager
-        
-        // Create GridBagConstraints for centering
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        
-        // Limpiar los componentes anteriores de jContenido
-        jContenido.removeAll();
-        
-        // Añadir el contenido de InicioUsuario a jContenido
-        jContenido.add(mod);
-        
-        // Revalidar y repintar jContenido
-        jContenido.revalidate();
-        jContenido.repaint();
-        
-        if (!jContenido.isVisible()) {
-            jContenido.setVisible(true);
-        }
-    }
-    
     private void borrarIntercambios() {
         BorrarTransaccion brrTran = new BorrarTransaccion(cv1, usuario);
         
-        // Obtener el tamaño de jContenido
-        int jContenidoWidth = jContenido.getWidth();
-        int jContenidoHeight = jContenido.getHeight();
-        
-        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
-        brrTran.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
-        
-        jContenido.setLayout(new GridBagLayout()); // Example layout manager
-        
-        // Create GridBagConstraints for centering
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
+        //jContenido se ajusta a la nueva vista
+        jContenido.setLayout(new FlowLayout());
         
         // Limpiar los componentes anteriores de jContenido
         jContenido.removeAll();
@@ -148,20 +92,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private void buscarIntercambios() {
         MostrarIntercambios mosTran = new MostrarIntercambios(cv1);
         
-        // Obtener el tamaño de jContenido
-        int jContenidoWidth = jContenido.getWidth();
-        int jContenidoHeight = jContenido.getHeight();
-        
-        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
-        mosTran.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
-        
-        jContenido.setLayout(new GridBagLayout()); // Example layout manager
-        
-        // Create GridBagConstraints for centering
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
+        //jContenido se ajusta a la nueva vista
+        jContenido.setLayout(new FlowLayout());
         
         // Limpiar los componentes anteriores de jContenido
         jContenido.removeAll();
@@ -181,20 +113,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private void reseñas() {
         ConsultarReseñas res = new ConsultarReseñas();
         
-        // Obtener el tamaño de jContenido
-        int jContenidoWidth = jContenido.getWidth();
-        int jContenidoHeight = jContenido.getHeight();
-        
-        // Establecer el tamaño de InicioUsuario al tamaño de jContenido
-        res.setPreferredSize(new Dimension(jContenidoWidth, jContenidoHeight));
-        
-        jContenido.setLayout(new GridBagLayout()); // Example layout manager
-        
-        // Create GridBagConstraints for centering
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
+        //jContenido se ajusta a la nueva vista
+        jContenido.setLayout(new FlowLayout());
         
         // Limpiar los componentes anteriores de jContenido
         jContenido.removeAll();
@@ -229,10 +149,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
             case "Añadir Intercambios":
                 añadirIntercambios();
                 break;
-            case "Modificar Intercambios":
-                modificarIntercambios();
-                break;
-            case "Borrar Intercambios":
+            case "Mis Intercambios":
                 borrarIntercambios();
                 break;
 
@@ -269,7 +186,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Añadir Intercambios", "Modificar Intercambios", "Borrar Intercambios", "Buscar Intercambios", "Reseñas", "Cerrar Sesión" };
+            String[] strings = { "Añadir Intercambios", "Mis Intercambios", "Buscar Intercambios", "Reseñas", "Cerrar Sesión" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

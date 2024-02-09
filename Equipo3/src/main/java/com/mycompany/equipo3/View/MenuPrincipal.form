@@ -52,13 +52,12 @@
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="6">
+              <StringArray count="5">
                 <StringItem index="0" value="A&#xf1;adir Intercambios"/>
-                <StringItem index="1" value="Modificar Intercambios"/>
-                <StringItem index="2" value="Borrar Intercambios"/>
-                <StringItem index="3" value="Buscar Intercambios"/>
-                <StringItem index="4" value="Rese&#xf1;as"/>
-                <StringItem index="5" value="Cerrar Sesi&#xf3;n"/>
+                <StringItem index="1" value="Mis Intercambios"/>
+                <StringItem index="2" value="Buscar Intercambios"/>
+                <StringItem index="3" value="Rese&#xf1;as"/>
+                <StringItem index="4" value="Cerrar Sesi&#xf3;n"/>
               </StringArray>
             </Property>
           </Properties>
