@@ -6,9 +6,12 @@ package com.mycompany.equipo3.View;
 
 import com.mycompany.equipo3.Model.Usuarios;
 import com.mycompany.equipo3.Silvia;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -21,9 +24,13 @@ public class BorrarTransaccion extends javax.swing.JPanel {
     CamVis cv1;
     Usuarios usuario;
     private int idTransaccionSeleccionada;
-    public BorrarTransaccion(CamVis cv1, Usuarios usuario) {
+    private JPanel jContenido;
+    private JScrollPane jScrollPane;
+    public BorrarTransaccion(CamVis cv1, Usuarios usuario, JPanel jContenido, JScrollPane jScrollPane) {
         this.cv1 = cv1;
         this.usuario = usuario;
+        this.jContenido = jContenido;
+        this.jScrollPane = jScrollPane;
         initComponents();
     }
 
@@ -41,7 +48,7 @@ public class BorrarTransaccion extends javax.swing.JPanel {
         btnEliminar = new javax.swing.JButton();
         btnConectar = new java.awt.Button();
         jComboBox1 = new javax.swing.JComboBox<>();
-        btnModificar = new javax.swing.JButton();
+        btnModidicar = new javax.swing.JButton();
 
         jLabel1.setText("MIS INTERCAMBIOS");
 
@@ -68,10 +75,10 @@ public class BorrarTransaccion extends javax.swing.JPanel {
             }
         });
 
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModidicar.setText("Modificar");
+        btnModidicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnModidicarActionPerformed(evt);
             }
         });
 
@@ -94,8 +101,8 @@ public class BorrarTransaccion extends javax.swing.JPanel {
                         .addGap(0, 79, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnModidicar)
+                .addGap(18, 18, 18)
                 .addComponent(btnEliminar)
                 .addGap(26, 26, 26))
         );
@@ -113,7 +120,7 @@ public class BorrarTransaccion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
-                    .addComponent(btnModificar))
+                    .addComponent(btnModidicar))
                 .addGap(28, 28, 28))
         );
 
@@ -148,18 +155,28 @@ public class BorrarTransaccion extends javax.swing.JPanel {
 
             // Convertir el ID de transacción a entero
             idTransaccionSeleccionada = Integer.parseInt(idTransaccionString);
-        }
-    });
+            }
+        });
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        cv1.cambiarVista(new InserModiTrans(cv1, "Modificar", usuario));
-    }//GEN-LAST:event_btnModificarActionPerformed
-
+    private void btnModidicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModidicarActionPerformed
+        System.out.println("[TRAZA] BOTON");
+        JPanel nueva = new InserModiTrans(cv1, "Insertar", usuario);
+        
+        jContenido.setLayout(new FlowLayout());
+        jContenido.removeAll();
+        jContenido.add(nueva);
+        jContenido.revalidate();
+        jContenido.repaint();
+        if (!jContenido.isVisible()) {
+            jContenido.setVisible(true);
+        }
+    }//GEN-LAST:event_btnModidicarActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnConectar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnModidicar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLUsuario;
     private javax.swing.JLabel jLabel1;

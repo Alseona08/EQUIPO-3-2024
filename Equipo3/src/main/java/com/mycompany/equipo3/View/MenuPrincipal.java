@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -47,9 +48,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
         });
     }
     
-    private void añadirIntercambios() {
-        InserModiTrans inser = new InserModiTrans(cv1, "Insertar", usuario);
-        
+    public void setContenido(JPanel nuevoContenido){
+        System.out.println("[TRAZA] SETCONTENIDO");
         //jContenido se ajusta a la nueva vista
         jContenido.setLayout(new FlowLayout());
         
@@ -57,7 +57,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jContenido.removeAll();
         
         // Añadir el contenido de InicioUsuario a jContenido
-        jContenido.add(inser);
+        jContenido.add(nuevoContenido);
         
         // Revalidar y repintar jContenido
         jContenido.revalidate();
@@ -68,67 +68,28 @@ public class MenuPrincipal extends javax.swing.JPanel {
         }
     }
     
+    private void añadirIntercambios() {
+        InserModiTrans inser = new InserModiTrans(cv1, "Insertar", usuario);
+        
+        setContenido(inser);
+    }
+    
     private void borrarIntercambios() {
-        BorrarTransaccion brrTran = new BorrarTransaccion(cv1, usuario);
+        BorrarTransaccion misIntercambios = new BorrarTransaccion(cv1, usuario, jContenido, jScrollPane1);
         
-        //jContenido se ajusta a la nueva vista
-        jContenido.setLayout(new FlowLayout());
-        
-        // Limpiar los componentes anteriores de jContenido
-        jContenido.removeAll();
-        
-        // Añadir el contenido de InicioUsuario a jContenido
-        jContenido.add(brrTran);
-        
-        // Revalidar y repintar jContenido
-        jContenido.revalidate();
-        jContenido.repaint();
-        
-        if (!jContenido.isVisible()) {
-            jContenido.setVisible(true);
-        }
+        setContenido(misIntercambios);
     }
     
     private void buscarIntercambios() {
         MostrarIntercambios mosTran = new MostrarIntercambios(cv1);
         
-        //jContenido se ajusta a la nueva vista
-        jContenido.setLayout(new FlowLayout());
-        
-        // Limpiar los componentes anteriores de jContenido
-        jContenido.removeAll();
-        
-        // Añadir el contenido de InicioUsuario a jContenido
-        jContenido.add(mosTran);
-        
-        // Revalidar y repintar jContenido
-        jContenido.revalidate();
-        jContenido.repaint();
-        
-        if (!jContenido.isVisible()) {
-            jContenido.setVisible(true);
-        }
+        setContenido(mosTran);
     }
     
     private void reseñas() {
         ConsultarReseñas res = new ConsultarReseñas();
         
-        //jContenido se ajusta a la nueva vista
-        jContenido.setLayout(new FlowLayout());
-        
-        // Limpiar los componentes anteriores de jContenido
-        jContenido.removeAll();
-        
-        // Añadir el contenido de InicioUsuario a jContenido
-        jContenido.add(res);
-        
-        // Revalidar y repintar jContenido
-        jContenido.revalidate();
-        jContenido.repaint();
-        
-        if (!jContenido.isVisible()) {
-            jContenido.setVisible(true);
-        }
+        setContenido(res);
     }
     
     private void cerrarSesion() {
