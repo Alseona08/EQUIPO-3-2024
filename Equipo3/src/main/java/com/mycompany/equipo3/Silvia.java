@@ -17,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.LockModeType;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -86,8 +87,17 @@ public class Silvia {
         );
 
         List<Transacciones> resultados = em.createQuery(query).getResultList();
+        
+        if (resultados.isEmpty()) {
+            // No se encontraron transacciones, devuelve null
+            em.getTransaction().commit();
+            em.close();
+            emf.close();
+            return null;
+        }
+        
         for (Transacciones t : resultados) {
-            String consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
+            String consulta = t.toString();
             System.out.println(consulta);
             result.add(consulta);
         }
@@ -131,8 +141,17 @@ public class Silvia {
         );
 
         List<Transacciones> resultados = em.createQuery(query).getResultList();
+        
+        if (resultados.isEmpty()) {
+            // No se encontraron transacciones, devuelve null
+            em.getTransaction().commit();
+            em.close();
+            emf.close();
+            return null;
+        }
+        
         for (Transacciones t : resultados) {
-            String consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
+            String consulta = t.toString();
             System.out.println(consulta);
             result.add(consulta);
         }
@@ -163,7 +182,7 @@ public class Silvia {
 
         while (it.hasNext()) {
             t = it.next();
-            consulta = t.getTransaccionid() + " - Libro ofrecido: " + t.getLibroidOrigen().getTitulo() + " - Libro pedido: " + t.getLibroidDestino().getTitulo() + " - Estado: " + t.getEstado();
+            consulta = t.toString();
             System.out.println(consulta);
             result.add(consulta);
         }
@@ -175,6 +194,48 @@ public class Silvia {
 
         return result;
     }
+    
+    /**
+     * Modificado masivo con JPQL, un usuario podrá cambiar el estado de los libros cuyo estado 
+     * y autor coincida con los pasados por parametro
+     * 
+     * @param estadoNuevo
+     * @param estadoAnterior
+     * @param autor
+     * @param idUsuario 
+     */
+    public static boolean modificarEstadoLibros(String estadoNuevo, String estadoAnterior, String autor, int idUsuario) {
+        inicializaFactory();
+        em.getTransaction().begin();
+        
+        boolean cambioRealizado = false;
+
+        TypedQuery<Transacciones> query = em.createQuery(
+                "SELECT t " +
+                        "FROM Transacciones t " +
+                        "WHERE t.usuarioid.usuarioid = :idUsuario " +
+                        "AND t.libroidOrigen.estado = :estadoAnterior " +
+                        "AND t.libroidOrigen.autor = :autor",
+                Transacciones.class);
+
+        query.setParameter("idUsuario", idUsuario);
+        query.setParameter("estadoAnterior", estadoAnterior);
+        query.setParameter("autor", autor);
+
+
+        for (Transacciones transaccion : query.getResultList()) {
+            transaccion.getLibroidOrigen().setEstado(estadoNuevo);
+            cambioRealizado = true;
+        }
+
+        em.getTransaction().commit();
+        
+        em.close();
+        emf.close();
+        
+        return cambioRealizado;
+    }
+
 
     public static void inicializaFactory() {
         emf = Persistence.createEntityManagerFactory("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");

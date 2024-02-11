@@ -119,11 +119,13 @@ public class Transacciones implements Serializable {
         return Objects.equals(this.libroidOrigen, other.libroidOrigen);
     }
 
-    
-
     @Override
     public String toString() {
-        return "com.mycompany.equipo3.Transacciones[ transaccionid=" + transaccionid + " ]";
+        return transaccionid 
+                + " - Libro ofrecido: " + libroidOrigen.getTitulo() + ", " + libroidOrigen.getAutor() + ", " + libroidOrigen.getEstado() 
+                + " - Libro pedido: " + libroidDestino.getTitulo() + ", " + libroidDestino.getAutor() + ", " + libroidDestino.getEstado()
+                + " - Estado: " + estado;
     }
+
     
 }

@@ -86,6 +86,12 @@ public class MenuPrincipal extends javax.swing.JPanel {
         setContenido(mosTran);
     }
     
+    private void modificadoRápido(){
+        ModificadoMasivo mod = new ModificadoMasivo(cv1, usuario);
+        
+        setContenido(mod);
+    }
+    
     private void reseñas() {
         ConsultarReseñas res = new ConsultarReseñas();
         
@@ -113,15 +119,15 @@ public class MenuPrincipal extends javax.swing.JPanel {
             case "Mis Intercambios":
                 borrarIntercambios();
                 break;
-
             case "Buscar Intercambios":
                 buscarIntercambios();
                 break;
-
+            case "Modificado Rápido":
+                modificadoRápido();
+                break;
             case "Reseñas":
                 reseñas();
                 break;
-
             case "Cerrar Sesión":
                 System.out.println("[TRAZA] CERRAR SESION");
                 cerrarSesion();
@@ -147,7 +153,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Añadir Intercambios", "Mis Intercambios", "Buscar Intercambios", "Reseñas", "Cerrar Sesión" };
+            String[] strings = { "Añadir Intercambios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Reseñas", "Cerrar Sesión" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
