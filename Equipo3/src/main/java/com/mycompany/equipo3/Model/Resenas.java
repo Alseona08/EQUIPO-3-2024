@@ -52,6 +52,15 @@ public class Resenas implements Serializable {
     public Resenas() {
     }
 
+    public Resenas(int resenaid, String contenido, int calificacion, Libros libroid, Usuarios usuarioid) {
+        this.resenaid = resenaid;
+        this.contenido = contenido;
+        this.calificacion = calificacion;
+        this.libroid = libroid;
+        this.usuarioid = usuarioid;
+    }
+    
+
     public Resenas(int resenaid) {
         this.resenaid = resenaid;
     }

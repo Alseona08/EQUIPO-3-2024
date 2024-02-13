@@ -96,8 +96,13 @@ public class MenuPrincipal extends javax.swing.JPanel {
         setContenido(mod);
     }
     
-    private void reseñas() {
-        ConsultarReseñas res = new ConsultarReseñas();
+    private void resenas() {
+        ConsultarReseñas res = new ConsultarReseñas(cv1);
+        
+        setContenido(res);
+    }
+    private void introducirResenas() {
+        InsRes res = new InsRes(cv1,usuario);
         
         setContenido(res);
     }
@@ -125,6 +130,9 @@ public class MenuPrincipal extends javax.swing.JPanel {
             case "Añadir Intercambios":
                 añadirIntercambios();
                 break;
+            case "Mostrar Todos Intercambios":
+                mostrarTodosIntercambios();
+            break;
             case "Mis Intercambios":
                 borrarIntercambios();
                 break;
@@ -134,11 +142,13 @@ public class MenuPrincipal extends javax.swing.JPanel {
             case "Modificado Rápido":
                 modificadoRápido();
                 break;
-            case "Reseñas":
-                reseñas();
+            case "Ver Reseña":
+                resenas();
                 break;
-            case "Mostrar Intercambios":
-                mostrarTodosIntercambios();
+            case "Introducir Reseña":
+                introducirResenas();
+                break;
+            case "Eliminar Usuario":
                 break;
             case "Cerrar Sesión":
                 System.out.println("[TRAZA] CERRAR SESION");
@@ -165,7 +175,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Añadir Intercambios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Reseñas", "Cerrar Sesión" };
+            String[] strings = { "Añadir Intercambios", "Mostrar Todos Intercamios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Introducir Reseña", "Ver Reseñas", "Eliminar Usuario", "Cerrar Sesión" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

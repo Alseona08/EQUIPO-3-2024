@@ -19,7 +19,9 @@ public class ConsultarReseñas extends javax.swing.JPanel {
     /**
      * Creates new form ConsultarReseñas
      */
-    public ConsultarReseñas() {
+    CamVis cv1;
+    public ConsultarReseñas(CamVis cv1) {
+        this.cv1 = cv1;
         initComponents();
         List<String> lista = selectTitulos();
         for(String item : lista){

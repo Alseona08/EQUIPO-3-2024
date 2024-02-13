@@ -1,8 +1,9 @@
-
 package com.mycompany.equipo3.View;
 
 import com.mycompany.equipo3.Miguel;
 import static com.mycompany.equipo3.Miguel.getUsuarioLoged;
+
+import com.mycompany.equipo3.View.CamVis;
 
 public class InicioUsuario extends javax.swing.JPanel {
 

@@ -4,6 +4,8 @@
  */
 package com.mycompany.equipo3;
 
+import com.mycompany.equipo3.Model.Libros;
+import com.mycompany.equipo3.Model.Resenas;
 import com.mycompany.equipo3.Model.Transacciones;
 import com.mycompany.equipo3.Model.Usuarios;
 import java.util.List;
@@ -92,6 +94,22 @@ public class Miguel {
         List<String> lista = query.getResultList();
         return lista;
     }
-
+    public static void insertResena(int id, String contenido,int calif, Libros libId, Usuarios usuId){
+        EntityManager em =JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+        Resenas res = new Resenas(id,contenido,calif,libId,usuId);
+        em.getTransaction().commit();
+    }
+    public static int getLastIdResena(){
+        EntityManager em = JPAUtil.getEntityManager();
+        int id = 0;
+        TypedQuery<Long> query1 = em.createQuery("Select count(c) from Resenas c",Long.class);
+        Long count = query1.getSingleResult();
+        TypedQuery<Integer> query = em.createQuery("Select max(c.categoriaid) from Resenas c",Integer.class);
+        if(count !=0){
+            id = query.getSingleResult();
+        }
+        return id;
+    }
     
 }
