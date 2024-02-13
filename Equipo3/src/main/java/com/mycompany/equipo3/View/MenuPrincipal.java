@@ -165,7 +165,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Añadir Intercambios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Reseñas", "Cerrar Sesión" };
+            String[] strings = { "Añadir Intercambios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Reseñas", "Mostrar Intercambios", "Cerrar Sesión" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
