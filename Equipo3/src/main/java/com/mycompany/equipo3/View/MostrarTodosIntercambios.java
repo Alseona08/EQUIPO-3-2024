@@ -15,7 +15,9 @@ public class MostrarTodosIntercambios extends javax.swing.JPanel {
     /**
      * Creates new form MostrarTodosIntercambios
      */
-    public MostrarTodosIntercambios() {
+    CamVis cv1;
+    public MostrarTodosIntercambios(CamVis cv1) {
+        this.cv1 = cv1;
         initComponents();
     }
 

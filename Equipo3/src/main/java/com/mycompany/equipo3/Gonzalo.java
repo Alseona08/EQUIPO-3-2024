@@ -44,10 +44,20 @@ public class Gonzalo {
                     
             while (it.hasNext()){
                 transaccion=it.next();
-                resultado.append(transaccion.getLibroidOrigen().getTitulo());
-                resultado.append(transaccion.getLibroidDestino().getTitulo());
-                resultado.append(transaccion.getEstado());
                 
+                 String tituloOrigen = transaccion.getLibroidOrigen().getTitulo();
+                 String tituloDestino = transaccion.getLibroidDestino().getTitulo();
+    
+            // Ajustar el ancho de los campos de los títulos
+                String tituloOrigenFormateado = String.format("%-20s", tituloOrigen);
+                String tituloDestinoFormateado = String.format("%-20s", tituloDestino);
+                
+                resultado.append(tituloOrigenFormateado)
+                        .append("\t")
+                        .append(tituloDestinoFormateado)
+                        .append("\t")
+                        .append(transaccion.getEstado())
+                        .append("\n");
             }
             txtArea.append(resultado.toString());
         }
