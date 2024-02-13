@@ -36,6 +36,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
         this.usuario = usuario;
         initComponents();
         
+        
+        
         jListOpciones.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -44,6 +46,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
                     String opc = jListOpciones.getSelectedValue();
                     cambiarContenido(opc);
                 }
+
+                
             }
         });
     }
@@ -98,6 +102,11 @@ public class MenuPrincipal extends javax.swing.JPanel {
         setContenido(res);
     }
     
+    private void mostrarTodosIntercambios(){
+        MostrarTodosIntercambios mti = new MostrarTodosIntercambios();
+        setContenido(mti);
+    }
+    
     private void cerrarSesion() {
         cv1.cambiarVista(new InicioUsuario(cv1));
     }
@@ -127,6 +136,9 @@ public class MenuPrincipal extends javax.swing.JPanel {
                 break;
             case "Reseñas":
                 reseñas();
+                break;
+            case "Mostrar Intercambios":
+                mostrarTodosIntercambios();
                 break;
             case "Cerrar Sesión":
                 System.out.println("[TRAZA] CERRAR SESION");
