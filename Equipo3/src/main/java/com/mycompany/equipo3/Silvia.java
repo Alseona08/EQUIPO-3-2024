@@ -17,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.LockModeType;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -165,7 +166,12 @@ public class Silvia {
         return result;
     }
 
-
+    /**
+     * Devuelve solo las transacciones del usuario 
+     * 
+     * @param idUsuario
+     * @return 
+     */
     public static ArrayList<String> consultaTransaccionesUsuario(int idUsuario) {
         System.out.println("[TRAZA] DENTRO");
         inicializaFactory();
@@ -236,6 +242,28 @@ public class Silvia {
         return cambioRealizado;
     }
 
+    /**
+     * Llama al namedquery que busca un libro por su id
+     * 
+     * @param id
+     * @return 
+     */
+    public static Libros buscarLibroPorId(int id) {
+        inicializaFactory();
+        em.getTransaction().begin();
+        
+        try {
+            Query query = em.createNamedQuery("Libros.findByLibroid");
+            query.setParameter("libroid", id);
+        
+            return (Libros) query.getSingleResult();
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+                emf.close();
+            }
+        }
+    }
 
     public static void inicializaFactory() {
         emf = Persistence.createEntityManagerFactory("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");

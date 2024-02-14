@@ -16,7 +16,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="626" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+              <Component id="txtField" min="-2" pref="383" max="-2" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -28,7 +37,13 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="428" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+              <Component id="txtField" min="-2" pref="128" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="btnGuardar" min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace pref="105" max="32767" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -52,53 +67,57 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="calificacionLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="tituloLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="calificacionLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jComboBox" alignment="0" pref="324" max="32767" attributes="0"/>
                               <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <Component id="lblNull" min="-2" pref="332" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="109" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tituloLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="calificacionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                          <Component id="btnConsultar" min="-2" pref="26" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tituloLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="328" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="calificacionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="calificacionLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="171" max="32767" attributes="0"/>
+                  <Component id="lblNull" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblNull">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Introducida con &#xe9;xito"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -115,11 +134,6 @@
         <Component class="javax.swing.JLabel" name="calificacionLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Calificaci&#xf3;n:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnConsultar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="CONSULTAR"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox">
@@ -142,7 +156,22 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
+        <Component class="javax.swing.JLabel" name="calificacionLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Comentario:"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
+    <Component class="java.awt.TextField" name="txtField">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGuardar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="GUARDAR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

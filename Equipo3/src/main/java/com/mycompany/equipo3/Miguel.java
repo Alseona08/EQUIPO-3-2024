@@ -8,6 +8,8 @@ import com.mycompany.equipo3.Model.Libros;
 import com.mycompany.equipo3.Model.Resenas;
 import com.mycompany.equipo3.Model.Transacciones;
 import com.mycompany.equipo3.Model.Usuarios;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -107,23 +109,34 @@ public class Miguel {
     }
     public static List<String> selectTitulos(){
         EntityManager em = JPAUtil.getEntityManager();
-        TypedQuery<String> query = em.createQuery("Select l.titulo from Libros l",String.class);
-        List<String> lista = query.getResultList();
+        TypedQuery<Object[]> query = em.createQuery("SELECT l.libroid, l.titulo FROM Libros l", Object[].class);
+        List<Object[]> resultList = query.getResultList();
+        List<String> lista = new ArrayList<>();
+
+        for (Object[] row : resultList) {
+            int id = (int) row[0]; // Suponiendo que el ID es de tipo BigDecimal
+            String titulo = (String) row[1];
+            String item = id + " - " + titulo;
+            lista.add(item);
+        }
+
+        em.close();
         return lista;
     }
     public static void insertResena(int id, String contenido,int calif, Libros libId, Usuarios usuId){
         EntityManager em =JPAUtil.getEntityManager();
         em.getTransaction().begin();
         Resenas res = new Resenas(id,contenido,calif,libId,usuId);
+        em.persist(res);
         em.getTransaction().commit();
     }
     public static int getLastIdResena(){
         EntityManager em = JPAUtil.getEntityManager();
-        int id = 0;
+        int id = 1;
         TypedQuery<Long> query1 = em.createQuery("Select count(c) from Resenas c",Long.class);
         Long count = query1.getSingleResult();
-        TypedQuery<Integer> query = em.createQuery("Select max(c.categoriaid) from Resenas c",Integer.class);
         if(count !=0){
+            TypedQuery<Integer> query = em.createQuery("Select max(c.categoriaid) from Resenas c",Integer.class);
             id = query.getSingleResult();
         }
         return id;

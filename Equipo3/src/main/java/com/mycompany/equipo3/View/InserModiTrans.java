@@ -24,7 +24,7 @@ public class InserModiTrans extends javax.swing.JPanel {
     Libros lib1;
     Libros lib2;
     
-    public InserModiTrans(CamVis cv1,String text, Usuarios usuario) {
+    public InserModiTrans(CamVis cv1,String text, Usuarios usuario, int id) {
         this.cv1 = cv1;
         this.text = text;
         this.usuario = usuario;
@@ -32,7 +32,7 @@ public class InserModiTrans extends javax.swing.JPanel {
         jButton1.setText(text);
         LTitulo.setText(text.toUpperCase() + " TRANSACCIÓN");
         if("Modificar".equals(jButton1.getText())){
-            Transacciones tr=selectTransaccion(1);
+            Transacciones tr=selectTransaccion(id);
             lib1=tr.getLibroidOrigen();
             lib2=tr.getLibroidDestino();
             TFTitulo1.setText(lib1.getTitulo());

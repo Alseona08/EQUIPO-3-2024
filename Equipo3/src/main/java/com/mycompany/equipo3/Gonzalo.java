@@ -69,14 +69,16 @@ public class Gonzalo {
     public static void consultaMasivaReseñaPorTituloYCalificacion(String titulo, int calificacion,JTextArea txtArea){
         EntityManager em = JPAUtil.getEntityManager();
         Resenas resena = null;
-        TypedQuery<Libros> query1 = em.createQuery("SELECT c FROM Libros c WHERE c.titulo=:titulo",Libros.class);
-        query1.setParameter("titulo", titulo);
-        Libros lib = query1.getSingleResult();
-        TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid=:LIBROP AND r.calificacion=:CALIFICACIONP", Resenas.class);
-        query.setParameter("LIBROP", lib);
-        query.setParameter("CALIFICACIONP", calificacion);
+        
         
         try{
+            TypedQuery<Libros> query1 = em.createQuery("SELECT c FROM Libros c WHERE c.titulo=:titulo",Libros.class);
+            String tit=titulo.split(" ")[2];
+            query1.setParameter("titulo", tit);
+            Libros lib = query1.getSingleResult();
+            TypedQuery<Resenas> query = em.createQuery("SELECT r from Resenas r WHERE r.libroid=:LIBROP AND r.calificacion=:CALIFICACIONP", Resenas.class);
+            query.setParameter("LIBROP", lib);
+            query.setParameter("CALIFICACIONP", calificacion);
             Collection<Resenas> coleccion=query.getResultList();
             Iterator<Resenas> it=coleccion.iterator();
             

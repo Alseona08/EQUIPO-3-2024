@@ -74,7 +74,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }
     
     private void añadirIntercambios() {
-        InserModiTrans inser = new InserModiTrans(cv1, "Insertar", usuario);
+        InserModiTrans inser = new InserModiTrans(cv1, "Insertar", usuario, 0);
         
         setContenido(inser);
     }

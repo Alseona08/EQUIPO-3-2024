@@ -175,7 +175,10 @@ public class BorrarTransaccion extends javax.swing.JPanel {
 
     private void btnModidicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModidicarActionPerformed
         System.out.println("[TRAZA] BOTON");
-        JPanel nueva = new InserModiTrans(cv1, "Insertar", usuario);
+        String id=jComboBox1.getSelectedItem().toString();
+        id=id.split(" ")[0];
+        
+        JPanel nueva = new InserModiTrans(cv1, "Modificar", usuario, Integer.parseInt(id));
         
         jContenido.setLayout(new FlowLayout());
         jContenido.removeAll();
