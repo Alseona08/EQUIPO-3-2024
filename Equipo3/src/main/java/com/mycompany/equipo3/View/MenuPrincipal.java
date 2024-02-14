@@ -152,7 +152,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
             case "Introducir Reseña":
                 introducirResenas();
                 break;
-            case "Borrar Transacciones Usuario":
+            case "Eliminar Usuario":
                 borrado();
                 break;
             case "Cerrar Sesión":
@@ -180,7 +180,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Añadir Intercambios", "Mostrar Todos Intercambios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Introducir Reseña", "Ver Reseñas", "Borrar Transacciones Usuario", "Cerrar Sesión" };
+            String[] strings = { "Añadir Intercambios", "Mis Intercambios", "Mostrar Todos Intercambios", "Buscar Intercambios", "Modificado Rápido", "Introducir Reseña", "Ver Reseñas", "Eliminar Usuario", "Cerrar Sesión" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

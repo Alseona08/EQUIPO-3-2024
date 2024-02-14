@@ -32,6 +32,7 @@ public class BorrarTransaccion extends javax.swing.JPanel {
         this.jContenido = jContenido;
         this.jScrollPane = jScrollPane;
         initComponents();
+        lblNull.setVisible(false);
     }
 
     /**
@@ -49,6 +50,7 @@ public class BorrarTransaccion extends javax.swing.JPanel {
         btnConectar = new java.awt.Button();
         jComboBox1 = new javax.swing.JComboBox<>();
         btnModidicar = new javax.swing.JButton();
+        lblNull = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(806, 411));
 
@@ -84,6 +86,8 @@ public class BorrarTransaccion extends javax.swing.JPanel {
             }
         });
 
+        lblNull.setText("No tiene ningún intercambio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,20 +97,21 @@ public class BorrarTransaccion extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNull, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnModidicar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLUsuario)
                                 .addGap(149, 149, 149)
                                 .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE))
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnModidicar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
@@ -120,10 +125,11 @@ public class BorrarTransaccion extends javax.swing.JPanel {
                     .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
-                    .addComponent(btnModidicar))
+                    .addComponent(btnModidicar)
+                    .addComponent(lblNull))
                 .addGap(28, 28, 28))
         );
 
@@ -136,10 +142,15 @@ public class BorrarTransaccion extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+        lblNull.setVisible(false);
         ArrayList<String> consulta = Silvia.consultaTransaccionesUsuario(usuario.getUsuarioid());
-
-        for (int i = 0; i < consulta.size(); i++) {
-            jComboBox1.addItem(consulta.get(i));
+        
+        if(consulta==null){
+            lblNull.setVisible(true);
+        }else{
+            for (int i = 0; i < consulta.size(); i++) {
+                jComboBox1.addItem(consulta.get(i));
+            }  
         }
     }//GEN-LAST:event_btnConectarActionPerformed
 
@@ -183,5 +194,6 @@ public class BorrarTransaccion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblNull;
     // End of variables declaration//GEN-END:variables
 }

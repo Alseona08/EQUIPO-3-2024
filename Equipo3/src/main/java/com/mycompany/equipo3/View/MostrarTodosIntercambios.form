@@ -41,7 +41,7 @@
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="scrollPane" pref="331" max="32767" attributes="0"/>
+              <Component id="scrollPane" pref="317" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnMostrar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>

@@ -33,24 +33,33 @@ public class Miguel {
     }
     public static void borradoMasivo(Usuarios usu){
         EntityManager em = JPAUtil.getEntityManager();
-        Query query1 = em.createQuery("delete from Resenas where usuarioid=:idUsuarioV");
-        query1.setParameter("idUsuarioV",usu);
-        em.getTransaction().begin();
-        int deleteCount1 = query1.executeUpdate();
-        em.getTransaction().commit();
-        Query query2 = em.createQuery("delete from Libros where usuarioid=:idUsuarioV");
-        query2.setParameter("idUsuarioV",usu);
-        em.getTransaction().begin();
-        int deleteCount2 = query2.executeUpdate();
-        em.getTransaction().commit();
+        
         Query query3 = em.createQuery("delete from Transacciones where usuarioid=:idUsuarioV");
         query3.setParameter("idUsuarioV",usu);
         em.getTransaction().begin();
         int deleteCount3 = query3.executeUpdate();
         em.getTransaction().commit();
+        
+        Query query1 = em.createQuery("delete from Resenas where usuarioid=:idUsuarioV");
+        query1.setParameter("idUsuarioV",usu);
+        em.getTransaction().begin();
+        int deleteCount1 = query1.executeUpdate();
+        em.getTransaction().commit();
+        
+        Query query2 = em.createQuery("delete from Libros where usuarioid=:idUsuarioV");
+        query2.setParameter("idUsuarioV",usu);
+        em.getTransaction().begin();
+        int deleteCount2 = query2.executeUpdate();
+        em.getTransaction().commit();
         System.out.println(deleteCount1);
         System.out.println(deleteCount2);
         System.out.println(deleteCount3);
+        
+        Query query = em.createQuery("DELETE FROM Usuarios u WHERE u.usuarioid = :idUsuario");
+        query.setParameter("idUsuario", usu.getUsuarioid());
+        em.getTransaction().begin();
+        int deleteCount = query.executeUpdate();
+        em.getTransaction().commit();
     }
     
     public static boolean checkUsuarioRegistro(String mail){
