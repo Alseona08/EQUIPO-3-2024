@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -30,19 +31,26 @@ public class Miguel {
         emf = Persistence.createEntityManagerFactory ("com.mycompany_Equipo3_jar_1.0-SNAPSHOTPU");
         em = emf.createEntityManager();
     }
-    public static void modificacionMasiva(int idUsuario){
-        TypedQuery<Usuarios> query = em.createQuery("Select u from Usuarios u where u.idusuario=:IDUSUARIO",Usuarios.class);
-        query.setParameter("IDUSUARIO",idUsuario);
-        Usuarios usuario = query.getSingleResult();
-        TypedQuery<Transacciones> query1 = em.createQuery("Select t from Transacciones t where t.usuarioid=:USUARIOID ",Transacciones.class);
-        query1.setParameter("USUARIOID",usuario);
-        List<Transacciones> lista = query1.getResultList();
-        for(Transacciones t: lista){
-            em.remove(t);
-        }
+    public static void borradoMasivo(Usuarios usu){
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query1 = em.createQuery("delete from Resenas where usuarioid=:idUsuarioV");
+        query1.setParameter("idUsuarioV",usu);
         em.getTransaction().begin();
-        em.remove(usuario);
+        int deleteCount1 = query1.executeUpdate();
         em.getTransaction().commit();
+        Query query2 = em.createQuery("delete from Libros where usuarioid=:idUsuarioV");
+        query2.setParameter("idUsuarioV",usu);
+        em.getTransaction().begin();
+        int deleteCount2 = query2.executeUpdate();
+        em.getTransaction().commit();
+        Query query3 = em.createQuery("delete from Transacciones where usuarioid=:idUsuarioV");
+        query3.setParameter("idUsuarioV",usu);
+        em.getTransaction().begin();
+        int deleteCount3 = query3.executeUpdate();
+        em.getTransaction().commit();
+        System.out.println(deleteCount1);
+        System.out.println(deleteCount2);
+        System.out.println(deleteCount3);
     }
     
     public static boolean checkUsuarioRegistro(String mail){

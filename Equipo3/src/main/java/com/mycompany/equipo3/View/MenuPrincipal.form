@@ -60,7 +60,7 @@
                 <StringItem index="4" value="Modificado R&#xe1;pido"/>
                 <StringItem index="5" value="Introducir Rese&#xf1;a"/>
                 <StringItem index="6" value="Ver Rese&#xf1;as"/>
-                <StringItem index="7" value="Eliminar Usuario"/>
+                <StringItem index="7" value="Borrar Transacciones Usuario"/>
                 <StringItem index="8" value="Cerrar Sesi&#xf3;n"/>
               </StringArray>
             </Property>

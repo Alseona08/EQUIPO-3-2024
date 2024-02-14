@@ -4,6 +4,7 @@
  */
 package com.mycompany.equipo3.View;
 
+import static com.mycompany.equipo3.Miguel.borradoMasivo;
 import com.mycompany.equipo3.Model.Usuarios;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -115,7 +116,10 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private void cerrarSesion() {
         cv1.cambiarVista(new InicioUsuario(cv1));
     }
-
+    private void borrado(){
+        Eliminado eli = new Eliminado(cv1,usuario);
+        setContenido(eli);
+    }
     
     /**
      * Método que a través de un switch nos llevará a los métodos creados para
@@ -148,7 +152,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
             case "Introducir Reseña":
                 introducirResenas();
                 break;
-            case "Eliminar Usuario":
+            case "Borrar Transacciones Usuario":
+                borrado();
                 break;
             case "Cerrar Sesión":
                 System.out.println("[TRAZA] CERRAR SESION");
@@ -175,7 +180,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         jListOpciones.setBackground(new java.awt.Color(204, 204, 255));
         jListOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Añadir Intercambios", "Mostrar Todos Intercambios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Introducir Reseña", "Ver Reseñas", "Eliminar Usuario", "Cerrar Sesión" };
+            String[] strings = { "Añadir Intercambios", "Mostrar Todos Intercambios", "Mis Intercambios", "Buscar Intercambios", "Modificado Rápido", "Introducir Reseña", "Ver Reseñas", "Borrar Transacciones Usuario", "Cerrar Sesión" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
